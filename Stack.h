@@ -5,10 +5,14 @@
 #include <initializer_list>
 #include <iosfwd>
 #include <stdexcept>
-#include "Visitor.h"
+#include "visitor.h"
+#include "container.h"
+
+template <class T>
+class container;
 
 template<class T>
-class Stack {
+class Stack : public Container<T> {
  public:
 
  class Iterator : public std::iterator<std::forward_iterator_tag, T> {
@@ -86,7 +90,6 @@ class Stack {
   void Pop();
   void Push(const T& value);
   void Swap(Stack& new_stack);
-  void Accept(const Visitor<T>& visitor);
 
   Iterator begin();
   Iterator end();
@@ -391,7 +394,6 @@ void Stack<T>::Push(const T& value) {
     delete[] data_;
     data_ = new_data;
     capacity_ *= 2;
-    //delete[] new_data;
   }
   data_[size_] = value;
   ++size_;

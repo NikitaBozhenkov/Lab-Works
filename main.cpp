@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cassert>
-#include "Stack.h"
+#include "stack.h"
 
 void CheckConstructors() {
   std::cout << "Starting constructors testing:" << std::endl;
@@ -203,7 +203,7 @@ void CheckEqualOperator() {
 void CheckStreamOperators() {
   Stack<int> stack = {2, 3, 5, 6};
 //  std::cin >> stack;b
-  std::cout << stack;
+  std::cout << stack << std::endl;
 }
 
 void CheckAll() {

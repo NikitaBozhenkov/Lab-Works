@@ -4,15 +4,16 @@
 #include <initializer_list>
 #include "vector"
 #include "Visitor.h"
+#include "container.h"
 
 template<class T>
 class Visitor;
 
 template<class T>
-class UnorderedHumanMass {
+class ChaoticMass : public Container<T> {
  public:
-  UnorderedHumanMass();
-  UnorderedHumanMass(std::initializer_list<T> list);
+  ChaoticMass();
+  ChaoticMass(std::initializer_list<T> list);
   T Get();
   void Accept(const Visitor<T>& visitor);
  private:
@@ -20,10 +21,10 @@ class UnorderedHumanMass {
 };
 
 template<class T>
-UnorderedHumanMass<T>::UnorderedHumanMass() : data_(0) {}
+ChaoticMass<T>::ChaoticMass() : data_(0) {}
 
 template<class T>
-UnorderedHumanMass<T>::UnorderedHumanMass(std::initializer_list<T> list) :data_(list.size()) {
+ChaoticMass<T>::ChaoticMass(std::initializer_list<T> list) :data_(list.size()) {
   for (const auto& elem : list) {
     data_.push_back(elem);
   }
