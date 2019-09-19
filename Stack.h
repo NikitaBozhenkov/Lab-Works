@@ -1,10 +1,11 @@
-#ifndef LAB1_STACK_H
-#define LAB1_STACK_H
+#ifndef STACK_WITH_UI_STACK_H
+#define STACK_WITH_UI_STACK_H
 
 #include <cstdio>
 #include <initializer_list>
 #include <iosfwd>
 #include <stdexcept>
+#include "Visitor.h"
 
 template<class T>
 class Stack {
@@ -16,10 +17,10 @@ class Stack {
     T* operator->() const;
 
     Iterator& operator++();
-    const Iterator operator++(int) const;
+    const Iterator operator++(int);
 
     Iterator& operator--();
-    const Iterator operator--(int) const;
+    const Iterator operator--(int);
 
     bool operator==(const Iterator& other) const;
     bool operator!=(const Iterator& other) const;
@@ -85,6 +86,7 @@ class Stack {
   void Pop();
   void Push(const T& value);
   void Swap(Stack& new_stack);
+  void Accept(const Visitor<T>& visitor);
 
   Iterator begin();
   Iterator end();
@@ -138,7 +140,7 @@ typename Stack<T>::Iterator& Stack<T>::Iterator::operator++() {
 }
 
 template<class T>
-const typename Stack<T>::Iterator Stack<T>::Iterator::operator++(int) const {
+const typename Stack<T>::Iterator Stack<T>::Iterator::operator++(int) {
   auto copy = *this;
   ++(*this);
   return copy;
@@ -152,7 +154,7 @@ typename Stack<T>::Iterator& Stack<T>::Iterator::operator--() {
 }
 
 template<class T>
-const typename Stack<T>::Iterator Stack<T>::Iterator::operator--(int) const {
+const typename Stack<T>::Iterator Stack<T>::Iterator::operator--(int) {
   auto copy = *this;
   --(*this);
   return copy;
@@ -407,5 +409,4 @@ void Stack<T>::Swap(Stack& new_stack) {
   std::swap(this->data_, new_stack.data_);
 }
 
-
-#endif //LAB1_STACK_H
+#endif //STACK_WITH_UI_STACK_H
