@@ -13,8 +13,8 @@ class ChaoticMass {
  public:
   ChaoticMass();
   ChaoticMass(std::initializer_list<T> list);
-  T Get();
-  void Accept(const Visitor<T>& visitor);
+
+  virtual void Accept(Visitor<T>* visitor);
  private:
   std::vector<T> data_;
 };
@@ -27,6 +27,10 @@ ChaoticMass<T>::ChaoticMass(std::initializer_list<T> list) :data_(list.size()) {
   for (const auto& elem : list) {
     data_.push_back(elem);
   }
+}
+template<class T>
+void ChaoticMass<T>::Accept(Visitor<T>* visitor) {
+  visitor->Visit(this);
 }
 
 #endif //STACK_WITH_UI_UNORDERED_HUMAN_MASS_H

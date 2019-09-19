@@ -91,6 +91,8 @@ class Stack : public Container<T> {
   void Push(const T& value);
   void Swap(Stack& new_stack);
 
+  virtual void Accept(Visitor<T>* visitor);
+
   Iterator begin();
   Iterator end();
 
@@ -409,6 +411,11 @@ void Stack<T>::Swap(Stack& new_stack) {
   capacity_ = new_stack.capacity_;
   new_stack.capacity_ = temp;
   std::swap(this->data_, new_stack.data_);
+}
+
+template<class T>
+void Stack<T>::Accept(Visitor<T>* visitor) {
+  visitor->Visit(this);
 }
 
 #endif //STACK_WITH_UI_STACK_H

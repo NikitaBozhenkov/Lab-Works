@@ -6,15 +6,17 @@
 #include "chaotic_mass_visitor.h"
 #include "stack_visitor.h"
 
-template <class T>
-class ChaoticMass;
-template <class T>
+template<class T>
 class Stack;
 
-template <class T>
+template<class T>
+class ChaoticMass;
+
+template<class T>
 class Visitor {
  public:
- virtual void Visit(Container<T>* container);
+  virtual void Visit(Stack<T>* stack);
+  virtual void Visit(ChaoticMass<T>* mass);
 };
 
 #endif //STACK_WITH_UI_VISITOR_H
