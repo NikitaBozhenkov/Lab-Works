@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/Stack.h
+cstdio
+-
+initializer_list
+-
+iosfwd
+-
+stdexcept
+-
+Visitor.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/Visitor.h
+
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/UnorderedHumanMass.h
+initializer_list
+-
+vector
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/vector
+Visitor.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/Visitor.h
+
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/Visitor.h
+UnorderedHumanMass.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/UnorderedHumanMass.h
+Stack.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/Stack.h
+
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/main.cpp
+iostream
+-
+cassert
+-
+Stack.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/Stack.h
+

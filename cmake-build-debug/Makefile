@@ -110,17 +110,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Lab1
+# Target rules for targets named Stack_with_UI
 
 # Build rule for target.
-Lab1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 Lab1
-.PHONY : Lab1
+Stack_with_UI: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 Stack_with_UI
+.PHONY : Stack_with_UI
 
 # fast build rule for target.
-Lab1/fast:
-	$(MAKE) -f CMakeFiles\Lab1.dir\build.make CMakeFiles/Lab1.dir/build
-.PHONY : Lab1/fast
+Stack_with_UI/fast:
+	$(MAKE) -f CMakeFiles\Stack_with_UI.dir\build.make CMakeFiles/Stack_with_UI.dir/build
+.PHONY : Stack_with_UI/fast
 
 main.obj: main.cpp.obj
 
@@ -128,7 +128,7 @@ main.obj: main.cpp.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) -f CMakeFiles\Lab1.dir\build.make CMakeFiles/Lab1.dir/main.cpp.obj
+	$(MAKE) -f CMakeFiles\Stack_with_UI.dir\build.make CMakeFiles/Stack_with_UI.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -137,7 +137,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles\Lab1.dir\build.make CMakeFiles/Lab1.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles\Stack_with_UI.dir\build.make CMakeFiles/Stack_with_UI.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -146,7 +146,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles\Lab1.dir\build.make CMakeFiles/Lab1.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles\Stack_with_UI.dir\build.make CMakeFiles/Stack_with_UI.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -155,7 +155,7 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... Lab1
+	@echo ... Stack_with_UI
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... main.obj
