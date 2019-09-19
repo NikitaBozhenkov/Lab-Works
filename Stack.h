@@ -16,10 +16,10 @@ class Stack {
     T* operator->() const;
 
     Iterator& operator++();
-    const Iterator operator++(int);
+    const Iterator operator++(int) const;
 
     Iterator& operator--();
-    const Iterator operator--(int);
+    const Iterator operator--(int) const;
 
     bool operator==(const Iterator& other) const;
     bool operator!=(const Iterator& other) const;
@@ -138,7 +138,7 @@ typename Stack<T>::Iterator& Stack<T>::Iterator::operator++() {
 }
 
 template<class T>
-const typename Stack<T>::Iterator Stack<T>::Iterator::operator++(int) {
+const typename Stack<T>::Iterator Stack<T>::Iterator::operator++(int) const {
   auto copy = *this;
   ++(*this);
   return copy;
@@ -152,7 +152,7 @@ typename Stack<T>::Iterator& Stack<T>::Iterator::operator--() {
 }
 
 template<class T>
-const typename Stack<T>::Iterator Stack<T>::Iterator::operator--(int) {
+const typename Stack<T>::Iterator Stack<T>::Iterator::operator--(int) const {
   auto copy = *this;
   --(*this);
   return copy;
