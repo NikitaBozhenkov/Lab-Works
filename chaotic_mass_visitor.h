@@ -5,6 +5,7 @@
 
 template <class T>
 class ChaoticMassVisitor : public Visitor<T> {
+ public:
   void Visit(Container<T>* container) override;
 };
 

@@ -4,7 +4,7 @@
 #include "chaotic_mass.h"
 #include "stack.h"
 #include "chaotic_mass_visitor.h"
-//#include "stack_visitor.h"
+#include "stack_visitor.h"
 
 template <class T>
 class ChaoticMass;

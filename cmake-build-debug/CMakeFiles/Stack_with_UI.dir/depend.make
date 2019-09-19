@@ -7,5 +7,6 @@ CMakeFiles/Stack_with_UI.dir/main.cpp.obj: ../chaotic_mass_visitor.h
 CMakeFiles/Stack_with_UI.dir/main.cpp.obj: ../container.h
 CMakeFiles/Stack_with_UI.dir/main.cpp.obj: ../main.cpp
 CMakeFiles/Stack_with_UI.dir/main.cpp.obj: ../stack.h
+CMakeFiles/Stack_with_UI.dir/main.cpp.obj: ../stack_visitor.h
 CMakeFiles/Stack_with_UI.dir/main.cpp.obj: ../visitor.h
 
