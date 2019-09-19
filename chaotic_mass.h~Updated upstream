@@ -4,12 +4,13 @@
 #include <initializer_list>
 #include "vector"
 #include "Visitor.h"
+#include "container.h"
 
 template<class T>
 class Visitor;
 
 template<class T>
-class ChaoticMass {
+class ChaoticMass : public Container<T> {
  public:
   ChaoticMass();
   ChaoticMass(std::initializer_list<T> list);

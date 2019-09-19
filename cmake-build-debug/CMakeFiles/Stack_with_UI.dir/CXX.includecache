@@ -11,6 +11,8 @@ chaotic_mass.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass.h
 stack.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack.h
+chaotic_mass_visitor.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass_visitor.h
 
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass.h
 initializer_list
@@ -19,6 +21,10 @@ vector
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/vector
 Visitor.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/Visitor.h
+
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass_visitor.h
+visitor.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/visitor.h
 container.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/container.h
 
@@ -53,4 +59,6 @@ chaotic_mass.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass.h
 stack.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack.h
+chaotic_mass_visitor.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass_visitor.h
 
