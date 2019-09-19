@@ -3,18 +3,24 @@
 
 #include <initializer_list>
 #include "vector"
-#include "Visitor.h"
+#include "visitor.h"
+#include "container.h"
 
 template<class T>
 class Visitor;
 
 template<class T>
-class ChaoticMass {
+class ChaoticMass : public Container<T> {
  public:
   ChaoticMass();
   ChaoticMass(std::initializer_list<T> list);
 
+  void Pop();
+
+  T Top() const;
+
   virtual void Accept(Visitor<T>* visitor);
+
  private:
   std::vector<T> data_;
 };
@@ -28,9 +34,20 @@ ChaoticMass<T>::ChaoticMass(std::initializer_list<T> list) :data_(list.size()) {
     data_.push_back(elem);
   }
 }
+
 template<class T>
 void ChaoticMass<T>::Accept(Visitor<T>* visitor) {
   visitor->Visit(this);
+}
+
+template<class T>
+void ChaoticMass<T>::Pop() {
+  data_.pop_back();
+}
+
+template<class T>
+T ChaoticMass<T>::Top() const {
+  return data_.back();
 }
 
 #endif //STACK_WITH_UI_UNORDERED_HUMAN_MASS_H
