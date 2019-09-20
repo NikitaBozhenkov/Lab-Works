@@ -16,12 +16,6 @@ D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/visitor.h
 container.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/container.h
 
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass_visitor.h
-visitor.h
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/visitor.h
-container.h
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/container.h
-
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/container.h
 
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/main.cpp
@@ -29,6 +23,12 @@ iostream
 -
 cassert
 -
+stack.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack.h
+
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/read_visitor.h
+visitor.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/visitor.h
 stack.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack.h
 
@@ -46,19 +46,11 @@ D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/visitor.h
 container.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/container.h
 
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack_visitor.h
-visitor.h
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/visitor.h
-stack.h
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack.h
-
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/visitor.h
 chaotic_mass.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass.h
 stack.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack.h
-chaotic_mass_visitor.h
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass_visitor.h
-stack_visitor.h
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack_visitor.h
+read_visitor.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/read_visitor.h
 
