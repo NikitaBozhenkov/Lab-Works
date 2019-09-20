@@ -16,9 +16,8 @@ class ChaoticMass : public Container<T> {
   ChaoticMass(std::initializer_list<T> list);
 
   void Pop();
-
   T Top() const;
-
+  bool IsEmpty() const;
   virtual void Accept(Visitor<T>* visitor);
 
  private:
@@ -48,6 +47,11 @@ void ChaoticMass<T>::Pop() {
 template<class T>
 T ChaoticMass<T>::Top() const {
   return data_.back();
+}
+
+template<class T>
+bool ChaoticMass<T>::IsEmpty() const {
+  return data_.empty();
 }
 
 #endif //STACK_WITH_UI_UNORDERED_HUMAN_MASS_H
