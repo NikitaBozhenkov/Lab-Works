@@ -36,7 +36,7 @@ ChaoticMass<T>::ChaoticMass(std::initializer_list<T> list) :data_(list.size()) {
 
 template<class T>
 void ChaoticMass<T>::Accept(Visitor<T>* visitor) {
-  visitor->Visit(this);
+  visitor->Visit(*this);
 }
 
 template<class T>

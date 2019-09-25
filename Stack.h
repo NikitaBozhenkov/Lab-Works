@@ -8,9 +8,6 @@
 #include "visitor.h"
 #include "container.h"
 
-template <class T>
-class container;
-
 template<class T>
 class Stack : public Container<T> {
  public:
@@ -323,7 +320,7 @@ bool Stack<T>::operator!=(const Stack<T>& rhs) const {
 
 template <class T>
 std::istream& operator>>(std::istream& stream, Stack<T>& stack) {
-  size_t added_elements;
+  size_t added_elements = 0;
   T value;
   stream >> added_elements;
   for (size_t i = 0; i < added_elements; ++i) {
@@ -335,9 +332,6 @@ std::istream& operator>>(std::istream& stream, Stack<T>& stack) {
 
 template<class T>
 std::ostream& operator<<(std::ostream& stream, const Stack<T>& stack) {
-//  for (size_t i = 0; i < stack.Size(); ++i) {
-//    stream << stack.data_[i]->value << " ";
-//  }
   for (const auto& elem : stack) {
     stream << elem;
   }
@@ -415,7 +409,7 @@ void Stack<T>::Swap(Stack& new_stack) {
 
 template<class T>
 void Stack<T>::Accept(Visitor<T>* visitor) {
-  visitor->Visit(this);
+  visitor->Visit(*this);
 }
 
 #endif //STACK_WITH_UI_STACK_H

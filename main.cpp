@@ -202,7 +202,7 @@ void CheckEqualOperator() {
 
 void CheckStreamOperators() {
   Stack<int> stack = {2, 3, 5, 6};
-//  std::cin >> stack;b
+  std::cin >> stack;
   std::cout << stack << std::endl;
 }
 

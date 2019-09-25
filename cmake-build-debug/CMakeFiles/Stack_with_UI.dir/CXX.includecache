@@ -17,6 +17,10 @@ container.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/container.h
 
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/container.h
+stack.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack.h
+chaotic_mass.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/chaotic_mass.h
 
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/main.cpp
 iostream
@@ -31,6 +35,8 @@ visitor.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/visitor.h
 stack.h
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack.h
+container.h
+D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/container.h
 
 D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/stack.h
 cstdio

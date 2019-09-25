@@ -2,6 +2,7 @@
 #define STACK_WITH_UI_READ_VISITOR_H
 #include "visitor.h"
 #include "stack.h"
+#include "container.h"
 
 template<class T>
 class Stack;
@@ -9,12 +10,12 @@ class Stack;
 template<class T>
 class ReadVisitor : public Visitor<T> {
  public:
-  void Visit(Stack<T>* stack) override;
-  void Visit(ChaoticMass<T>* mass);
+  void Visit(Stack<T>& stack) override;
+  void Visit(ChaoticMass<T>& mass);
 };
 
 template<class T>
-void ReadVisitor<T>::Visit(Stack<T>* stack) {
+void ReadVisitor<T>::Visit(Stack<T>& stack) {
   for (const auto& elem : stack) {
     std::cout << "You have red a book '" << stack->Top() << "'.";
     stack->Pop();
@@ -22,7 +23,7 @@ void ReadVisitor<T>::Visit(Stack<T>* stack) {
 }
 
 template<class T>
-void ReadVisitor<T>::Visit(ChaoticMass<T>* mass) {
+void ReadVisitor<T>::Visit(ChaoticMass<T>& mass) {
   if (typeid(T) == typeid(std::string)) {
     const std::vector<std::string> needed_books =
         {"Geometry", "Algebra", "Programming", "Math Analysis", "Discrete Math", "Diff Equations"};
