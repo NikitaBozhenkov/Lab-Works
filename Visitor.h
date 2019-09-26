@@ -6,12 +6,6 @@
 #include "read_visitor.h"
 
 template<class T>
-class Stack;
-
-template<class T>
-class ChaoticMass;
-
-template<class T>
 class Visitor {
  public:
   virtual void Visit(Stack<T>& stack) = 0;

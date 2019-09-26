@@ -5,34 +5,28 @@
 #include "vector"
 #include "visitor.h"
 #include "container.h"
+#include "random"
 
-template<class T>
-class Visitor;
 
 template<class T>
 class ChaoticMass : public Container<T> {
  public:
   ChaoticMass();
-  ChaoticMass(std::initializer_list<T> list);
+  explicit ChaoticMass(size_t capacity);
+  ChaoticMass(const std::initializer_list<T>& list);
 
-  void Pop();
-  T Top() const;
-  bool IsEmpty() const;
+  T Pop();
   virtual void Accept(Visitor<T>* visitor);
-
- private:
-  std::vector<T> data_;
 };
 
 template<class T>
-ChaoticMass<T>::ChaoticMass() : data_(0) {}
+ChaoticMass<T>::ChaoticMass() : Container<T>() {}
 
 template<class T>
-ChaoticMass<T>::ChaoticMass(std::initializer_list<T> list) :data_(list.size()) {
-  for (const auto& elem : list) {
-    data_.push_back(elem);
-  }
-}
+ChaoticMass<T>::ChaoticMass(size_t capacity) : Container<T>(capacity) {}
+
+template<class T>
+ChaoticMass<T>::ChaoticMass(const std::initializer_list<T>& list) : Container<T>(list) {}
 
 template<class T>
 void ChaoticMass<T>::Accept(Visitor<T>* visitor) {
@@ -40,18 +34,17 @@ void ChaoticMass<T>::Accept(Visitor<T>* visitor) {
 }
 
 template<class T>
-void ChaoticMass<T>::Pop() {
-  data_.pop_back();
-}
-
-template<class T>
-T ChaoticMass<T>::Top() const {
-  return data_.back();
-}
-
-template<class T>
-bool ChaoticMass<T>::IsEmpty() const {
-  return data_.empty();
+T ChaoticMass<T>::Pop() {
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> dis(0, this->size_);
+  int index = dis(gen) % this->size_;
+  T res = this->data_[index];
+  for (size_t i = index; i < this->size_-1; ++i) {
+    this->data_[i] = this->data_[i+1];
+  }
+  --this->size_;
+  return res;
 }
 
 #endif //STACK_WITH_UI_UNORDERED_HUMAN_MASS_H

@@ -11,35 +11,24 @@ template<class T>
 class ReadVisitor : public Visitor<T> {
  public:
   void Visit(Stack<T>& stack) override;
-  void Visit(ChaoticMass<T>& mass);
+  void Visit(ChaoticMass<T>& mass) override;
 };
 
 template<class T>
 void ReadVisitor<T>::Visit(Stack<T>& stack) {
   for (const auto& elem : stack) {
-    std::cout << "You have red a book '" << stack->Top() << "'.";
-    stack->Pop();
+    std::cout << "You have red a book '" << elem << "'." << std::endl;
   }
+  stack.Clear();
 }
 
 template<class T>
 void ReadVisitor<T>::Visit(ChaoticMass<T>& mass) {
-  if (typeid(T) == typeid(std::string)) {
-    const std::vector<std::string> needed_books =
-        {"Geometry", "Algebra", "Programming", "Math Analysis", "Discrete Math", "Diff Equations"};
-    while (!mass->IsEmpty()) {
-      T top = mass->Top();
-      for (const auto& elem : needed_books) {
-        if (elem == top) {
-          std::cout << "You've red a book '" << elem << "'.";
-        }
-      }
-      mass->Pop();
-    }
-  } else {
-    std::cout << "Maybe it's not the better time to read '" << mass->Top() << "'. You've put it off";
-    mass->Pop();
+  std::cout << "Maybe it's not the better time to read the books:" << std::endl;
+  while (!mass.IsEmpty()) {
+    std::cout << "'" << mass.Pop() << "', ";
   }
+  std::cout << std::endl << " You've put them off" << std::endl;
 }
 
 #endif //STACK_WITH_UI_READ_VISITOR_H

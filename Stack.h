@@ -12,7 +12,7 @@ template<class T>
 class Stack : public Container<T> {
  public:
 
- class Iterator : public std::iterator<std::forward_iterator_tag, T> {
+  class Iterator : public std::iterator<std::forward_iterator_tag, T> {
    public:
     T& operator*() const;
     T* operator->() const;
@@ -36,7 +36,7 @@ class Stack : public Container<T> {
         : stack_(stack), index_(index) {}
   };
 
- class ConstIterator : public  std::iterator<std::forward_iterator_tag, T>{
+  class ConstIterator : public std::iterator<std::forward_iterator_tag, T> {
    public:
     const T& operator*() const;
     const T* operator->() const;
@@ -72,34 +72,20 @@ class Stack : public Container<T> {
   Stack& operator+=(const Stack<T>& rhs);
   bool operator==(const Stack<T>& rhs) const;
   bool operator!=(const Stack<T>& rhs) const;
-  template <class U>
-  friend std::istream& operator>>(std::istream& stream, Stack<U>& stack);
-  template <class U>
-  friend std::ostream& operator<< (std::ostream& stream, const Stack<U>& stack);
 
   ~Stack();
 
-  bool IsEmpty() const;
-  size_t Size() const;
-  size_t GetCapacity() const;
   T Top() const;
-  void Clear();
   void Pop();
-  void Push(const T& value);
   void Swap(Stack& new_stack);
 
-  virtual void Accept(Visitor<T>* visitor);
+  virtual void Accept(Visitor<T>* visitor) override;
 
   Iterator begin();
   Iterator end();
 
   ConstIterator begin() const;
   ConstIterator end() const;
-
- private:
-  T* data_;
-  size_t size_;
-  size_t capacity_;
 };
 
 template<class T>
@@ -109,7 +95,7 @@ typename Stack<T>::Iterator Stack<T>::begin() {
 
 template<class T>
 typename Stack<T>::Iterator Stack<T>::end() {
-  return Stack::Iterator(this, size_);
+  return Stack::Iterator(this, this->size_);
 }
 
 template<class T>
@@ -119,7 +105,7 @@ typename Stack<T>::ConstIterator Stack<T>::begin() const {
 
 template<class T>
 typename Stack<T>::ConstIterator Stack<T>::end() const {
-  return Stack::ConstIterator(this, size_);
+  return Stack::ConstIterator(this, this->size_);
 }
 
 template<class T>
@@ -131,7 +117,7 @@ T& Stack<T>::Iterator::operator*() const {
 template<class T>
 T* Stack<T>::Iterator::operator->() const {
   if (index_ == stack_->end().index_) throw std::out_of_range("end member access");
-  return data_ + index_;
+  return this->data_ + index_;
 }
 
 template<class T>
@@ -187,7 +173,7 @@ const T* Stack<T>::ConstIterator::operator->() const {
 template<class T>
 typename Stack<T>::ConstIterator& Stack<T>::ConstIterator::operator++() {
   if (index_ == stack_->end().index_) throw std::out_of_range("end increment");
-  index_ = index_+1;
+  index_ = index_ + 1;
   return *this;
 }
 
@@ -201,7 +187,7 @@ const typename Stack<T>::ConstIterator Stack<T>::ConstIterator::operator++(int) 
 template<class T>
 typename Stack<T>::ConstIterator& Stack<T>::ConstIterator::operator--() {
   if (index_ == stack_->begin().index_) throw std::out_of_range("begin decrement");
-  index_ = index_-1;
+  index_ = index_ - 1;
   return *this;
 }
 
@@ -223,60 +209,56 @@ bool Stack<T>::ConstIterator::operator!=(const Stack::ConstIterator& other) cons
 }
 
 template<class T>
-Stack<T>::Stack() : data_(new T [1]), size_(0), capacity_(1) {}
+Stack<T>::Stack() : Container<T>() {}
 
 template<class T>
-Stack<T>::Stack(size_t capacity) : data_(new T [capacity]),
-                                   size_(0), capacity_(capacity) {}
+Stack<T>::Stack(size_t capacity) : Container<T>(capacity) {}
 
 template<class T>
-Stack<T>::Stack(std::initializer_list<T> list) : data_(new T [list.size()]), size_(0),
-                                                 capacity_(list.size()) {
-  for (const auto& elem : list) {
-    Push(elem);
-  }
-}
+Stack<T>::Stack(std::initializer_list<T> list) : Container<T>(list) {}
 
 template<class T>
 Stack<T>::Stack(const Stack<T>& rhs) {
-  data_ = new T [rhs.capacity_];
-  size_ = 0;
-  capacity_ = rhs.capacity_;
+  this->data_ = new T[rhs.GetCapacity()];
+  this->size_ = 0;
+  this->capacity_ = rhs.GetCapacity();
   T temp;
   for (size_t i = 0; i < rhs.Size(); ++i) {
-    Push(rhs.data_[i]);
+    this->Push(rhs.data_[i]);
   }
 }
 
 template<class T>
 Stack<T>& Stack<T>::operator=(const Stack<T>& rhs) {
-  if (capacity_ != rhs.capacity_) {
-    delete[] data_;
-    data_ = new T [capacity_];
-    capacity_ = rhs.capacity_;
+  if (this->capacity_ != rhs.GetCapacity()) {
+    delete[] this->data_;
+    this->data_ = new T[this->capacity_];
+    this->capacity_ = rhs.GetCapacity();
   }
-  size_ = 0;
+  this->size_ = 0;
   for (size_t i = 0; i < rhs.size_; ++i) {
-    Push(rhs.data_[i]);
+    this->Push(rhs.data_[i]);
   }
   return *this;
 }
 
 template<class T>
-Stack<T>::Stack(Stack<T>&& rhs) noexcept : data_(rhs.data_), size_(rhs.size_),
-                                           capacity_(rhs.capacity_) {
-  rhs.data_ = new T [1];
-  rhs.capacity_ = 1;
+Stack<T>::Stack(Stack<T>&& rhs) noexcept {
+  this->data_ = rhs.data_;
+  this->size_ = rhs.size_;
+  this->capacity_ = rhs.capacity_;
+  rhs.data_ = new T[1];
   rhs.size_ = 0;
+  rhs.capacity_ = 1;
 }
 
 template<class T>
 Stack<T>& Stack<T>::operator=(Stack<T>&& rhs) noexcept {
-  delete[] data_;
-  data_ = rhs.data_;
-  size_ = rhs.size_;
-  capacity_ = rhs.capacity_;
-  rhs.data_ = new T [1];
+  delete[] this->data_;
+  this->data_ = rhs.data_;
+  this->size_ = rhs.size_;
+  this->capacity_ = rhs.capacity_;
+  rhs.data_ = new T[1];
   rhs.size_ = 0;
   rhs.capacity_ = 1;
   return *this;
@@ -285,8 +267,9 @@ Stack<T>& Stack<T>::operator=(Stack<T>&& rhs) noexcept {
 template<class T>
 Stack<T> Stack<T>::operator+(const Stack<T>& rhs) const {
   Stack stack = *this;
-  stack.size_ = size_;
-  stack.capacity_ = (capacity_ > rhs.capacity_) ? capacity_ * 2 : rhs.capacity_ * 2;
+  stack.size_ = this->size_;
+  stack.capacity_ = (this->capacity_ > rhs.capacity_) ?
+                    this->capacity_ * 2 : rhs.capacity_ * 2;
   for (size_t i = 0; i < rhs.Size(); ++i) {
     stack.Push(rhs.data_[i]);
   }
@@ -295,19 +278,20 @@ Stack<T> Stack<T>::operator+(const Stack<T>& rhs) const {
 
 template<class T>
 Stack<T>& Stack<T>::operator+=(const Stack<T>& rhs) {
-  capacity_ = (capacity_ > rhs.capacity_) ? capacity_ * 2 : rhs.capacity_ * 2;
+  this->capacity_ = (this->capacity_ > rhs.capacity_)
+                    ? this->capacity_ * 2 : rhs.capacity_ * 2;
   for (size_t i = 0; i < rhs.Size(); ++i) {
-    Push(rhs.data_[i]);
+    this->Push(rhs.data_[i]);
   }
   return *this;
 }
 
 template<class T>
 bool Stack<T>::operator==(const Stack<T>& rhs) const {
-  if (size_ != rhs.size_) {
+  if (this->size_ != rhs.size_) {
     return false;
   }
-  for (size_t i = 0; i < size_; ++i) {
+  for (size_t i = 0; i < this->size_; ++i) {
     if (this->data_[i] != rhs.data_[i]) return false;
   }
   return true;
@@ -318,91 +302,36 @@ bool Stack<T>::operator!=(const Stack<T>& rhs) const {
   return !(*this == rhs);
 }
 
-template <class T>
-std::istream& operator>>(std::istream& stream, Stack<T>& stack) {
-  size_t added_elements = 0;
-  T value;
-  stream >> added_elements;
-  for (size_t i = 0; i < added_elements; ++i) {
-    stream >> value;
-    stack.Push(value);
-  }
-  return stream;
-}
-
-template<class T>
-std::ostream& operator<<(std::ostream& stream, const Stack<T>& stack) {
-  for (const auto& elem : stack) {
-    stream << elem;
-  }
-  return stream;
-}
-
 template<class T>
 Stack<T>::~Stack() {
-  data_ = nullptr;
-  size_ = 0;
-}
-
-template<class T>
-bool Stack<T>::IsEmpty() const {
-  return size_ == 0;
-}
-
-template<class T>
-size_t Stack<T>::Size() const {
-  return size_;
-}
-
-template<class T>
-size_t Stack<T>::GetCapacity() const {
-  return capacity_;
+  this->data_ = nullptr;
+  this->size_ = 0;
 }
 
 template<class T>
 T Stack<T>::Top() const {
-  if (IsEmpty()) {
+  if (this->IsEmpty()) {
     throw std::out_of_range("Stack is empty");
   }
-  return data_[size_ - 1];
-}
-
-template<class T>
-void Stack<T>::Clear() {
-  size_ = 0;
+  return this->data_[this->size_ - 1];
 }
 
 template<class T>
 void Stack<T>::Pop() {
-  if (IsEmpty()) {
+  if (this->IsEmpty()) {
     throw std::out_of_range("Stack is empty");
   }
-  --size_;
-}
-
-template<class T>
-void Stack<T>::Push(const T& value) {
-  if (size_ == capacity_) {
-    T* new_data = new T [capacity_ * 2];
-    for (size_t i = 0; i < size_; ++i) {
-      new_data[i] = data_[i];
-    }
-    delete[] data_;
-    data_ = new_data;
-    capacity_ *= 2;
-  }
-  data_[size_] = value;
-  ++size_;
+  --this->size_;
 }
 
 template<class T>
 void Stack<T>::Swap(Stack& new_stack) {
   size_t temp;
-  temp = size_;
-  size_ = new_stack.size_;
+  temp = this->size_;
+  this->size_ = new_stack.size_;
   new_stack.size_ = temp;
-  temp = capacity_;
-  capacity_ = new_stack.capacity_;
+  temp = this->capacity_;
+  this->capacity_ = new_stack.capacity_;
   new_stack.capacity_ = temp;
   std::swap(this->data_, new_stack.data_);
 }

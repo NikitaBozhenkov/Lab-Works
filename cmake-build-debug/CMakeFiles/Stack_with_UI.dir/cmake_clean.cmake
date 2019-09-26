@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Stack_with_UI.dir/main.cpp.obj"
-  "Stack_with_UI.pdb"
   "Stack_with_UI.exe"
   "Stack_with_UI.exe.manifest"
+  "Stack_with_UI.pdb"
   "libStack_with_UI.dll.a"
 )
 

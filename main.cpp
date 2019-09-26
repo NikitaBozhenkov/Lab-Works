@@ -206,6 +206,16 @@ void CheckStreamOperators() {
   std::cout << stack << std::endl;
 }
 
+void CheckVisitor() {
+  {
+    auto visitor = new ReadVisitor<int>();
+    Stack<int> stack = {1,4,5,2,7,13};
+    ChaoticMass<int> mass = {4,43,-2,41,-435};
+    mass.Accept(visitor);
+    stack.Accept(visitor);
+  }
+}
+
 void CheckAll() {
   CheckConstructors();
   CheckPopAndTop();
@@ -213,7 +223,8 @@ void CheckAll() {
   CheckPush();
   CheckPlusOperators();
   CheckEqualOperator();
-  CheckStreamOperators();
+  //CheckStreamOperators();
+  CheckVisitor();
 }
 
 int main() {
