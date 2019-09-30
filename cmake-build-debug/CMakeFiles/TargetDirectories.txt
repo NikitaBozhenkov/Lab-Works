@@ -1,3 +1,0 @@
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/cmake-build-debug/CMakeFiles/Lab1.dir
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Study/Code/CLionProjects/LabWorks/Stack-with-UI/cmake-build-debug/CMakeFiles/rebuild_cache.dir
