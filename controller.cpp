@@ -61,6 +61,18 @@ INT_PTR Controller::MessageProcessor(HWND hDlg, UINT msg, WPARAM wParam, LPARAM 
 			PostQuitMessage(0);
 			break;
 		}
+		case IDC_POP_STACK:
+		{
+			ProcessStackPop(hDlg, Model::GetStack());
+			container_operation = true;
+			break;
+		}
+		case IDC_POP_MASS: 
+		{
+			ProcessMassPop(hDlg, Model::GetMass());
+			container_operation = true;
+			break;
+		}
 		}
 
 		if (container_operation) {
@@ -97,6 +109,14 @@ void Controller::ProcessPush(HWND hDlg, Container<Model::Type_>* container) {
 		value += temp + " ";
 	}
 	container->Push(value);
+}
+
+void Controller::ProcessStackPop(HWND hDlg, Stack<Model::Type_>* stack) {
+	stack->Pop();
+}
+
+void Controller::ProcessMassPop(HWND hDlg, ChaoticMass<Model::Type_>* mass) {
+	mass->Pop();
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,

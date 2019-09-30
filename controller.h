@@ -14,7 +14,8 @@ public:
 protected:
 	static void ProcessPush(
 		HWND hDlg, Container<Model::Type_>* container);
-
+	static void ProcessStackPop(HWND hDlg, Stack<Model::Type_>* stack);
+	static void ProcessMassPop(HWND hDlg, ChaoticMass<Model::Type_>* mass);
 protected:
 	const static int32_t BUFFER_SIZE;
 };
