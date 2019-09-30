@@ -7,9 +7,9 @@
 
 template<class T>
 class Visitor {
- public:
-  virtual void Visit(Stack<T>& stack) = 0;
-  virtual void Visit(ChaoticMass<T>& mass) = 0;
+public:
+	virtual void Visit(Stack<T>& stack) = 0;
+	virtual void Visit(ChaoticMass<T>& mass) = 0;
 };
 
 #endif //STACK_WITH_UI_VISITOR_H

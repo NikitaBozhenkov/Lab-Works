@@ -1,0 +1,3 @@
+﻿  controller.cpp
+D:\Study\Code\CLionProjects\LabWorks\LabWorkWithIU\controller.cpp(108,35): warning C4244: return: преобразование "WPARAM" в "int", возможна потеря данных
+  LabWorkWithIU.vcxproj -> D:\Study\Code\CLionProjects\LabWorks\LabWorkWithIU\x64\Debug\LabWorkWithIU.exe
