@@ -1,1 +1,24 @@
-﻿  LabWorkWithIU.vcxproj -> D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\x64\Debug\LabWorkWithIU.exe
+﻿  controller.cpp
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\controller.cpp(152,35): warning C4244: return: преобразование "WPARAM" в "int", возможна потеря данных
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(45,1): warning C4267: аргумент: преобразование из "size_t" в "_Ty"; возможна потеря данных
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(45,1): warning C4267:         with
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(45,1): warning C4267:         [
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(45,1): warning C4267:             _Ty=int
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(45,1): warning C4267:         ]
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(42): message : во время компиляции функции-члена класс шаблон "T ChaoticMass<T>::Pop(void)"
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(42): message :         with
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(42): message :         [
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(42): message :             T=Model::Type_
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\chaotic_mass.h(42): message :         ]
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\controller.cpp(129): message : выполняется компиляция ссылки на экземпляр шаблон функции "T ChaoticMass<T>::Pop(void)"
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\controller.cpp(129): message :         with
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\controller.cpp(129): message :         [
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\controller.cpp(129): message :             T=Model::Type_
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\controller.cpp(129): message :         ]
+  view.cpp
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\controller.cpp(50): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "ChaoticMass<Model::Type_>"
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\view.cpp(26,15): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\view.cpp(36,15): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Создание кода...
+D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\view.cpp(47,15): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  LabWorkWithIU.vcxproj -> D:\Study\Code\CLionProjects\LabWorks\Stack-with-UI\x64\Debug\LabWorkWithIU.exe

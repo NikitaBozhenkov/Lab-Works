@@ -16,6 +16,8 @@ protected:
 		HWND hDlg, Container<Model::Type_>* container);
 	static void ProcessStackPop(HWND hDlg, Stack<Model::Type_>* stack);
 	static void ProcessMassPop(HWND hDlg, ChaoticMass<Model::Type_>* mass);
+	static void ProcessStackVisit(HWND hDlg, Stack<Model::Type_>* stack);
+	static void ProcessMassVisit(HWND hDlg, ChaoticMass<Model::Type_>* mass);
 protected:
 	const static int32_t BUFFER_SIZE;
 };

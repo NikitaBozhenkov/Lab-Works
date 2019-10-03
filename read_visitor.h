@@ -12,23 +12,25 @@ class ReadVisitor : public Visitor<T> {
 public:
 	void Visit(Stack<T>& stack) override;
 	void Visit(ChaoticMass<T>& mass) override;
+	T GetLastPutOff() const;
+protected:
+	T last_put_off_;
 };
 
 template<class T>
 void ReadVisitor<T>::Visit(Stack<T>& stack) {
-	for (const auto& elem : *stack) {
-		std::cout << "You have red a book '" << elem << "'." << std::endl;
-	}
-	stack->Clear();
+	stack.Pop();
 }
 
 template<class T>
 void ReadVisitor<T>::Visit(ChaoticMass<T>& mass) {
-	std::cout << "Maybe it's not the better time to read the books:" << std::endl;
-	while (!mass->IsEmpty()) {
-		std::cout << "'" << mass->Pop() << "', ";
-	}
-	std::cout << std::endl << " You've put them off" << std::endl;
+	last_put_off_ = mass.Pop();
 }
+
+template<class T>
+T ReadVisitor<T>::GetLastPutOff() const {
+	return last_put_off_;
+}
+
 
 #endif //STACK_WITH_UI_READ_VISITOR_H

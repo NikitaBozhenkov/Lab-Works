@@ -3,6 +3,8 @@
 // Используется LabWorkWithIU.rc
 //
 #define IDC_MYICON                      2
+#define IDC_LAST_READ                   2
+#define IDC_LAST_READ2                  3
 #define IDD_MAIN                        101
 #define IDD_LABWORKWITHIU_DIALOG        102
 #define IDS_APP_TITLE                   103
