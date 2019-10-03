@@ -73,6 +73,16 @@ INT_PTR Controller::MessageProcessor(HWND hDlg, UINT msg, WPARAM wParam, LPARAM 
 			container_operation = true;
 			break;
 		}
+		case IDC_VISIT_STACK:
+		{
+			ProcessStackVisit(hDlg, Model::GetStack());
+			container_operation = true;
+			break;
+		}
+		case IDC_VISIT_MASS:
+			ProcessMassVisit(hDlg, Model::GetMass());
+			container_operation = true;
+			break;
 		}
 
 		if (container_operation) {
@@ -117,6 +127,20 @@ void Controller::ProcessStackPop(HWND hDlg, Stack<Model::Type_>* stack) {
 
 void Controller::ProcessMassPop(HWND hDlg, ChaoticMass<Model::Type_>* mass) {
 	mass->Pop();
+}
+
+void Controller::ProcessStackVisit(HWND hDlg, Stack<Model::Type_>* stack) {
+	Model::Type_* read = Model::GetLastRead();
+	*read = stack->Top();
+	ReadVisitor<Model::Type_> visitor;
+	stack->Accept(visitor);
+}
+
+void Controller::ProcessMassVisit(HWND hDlg, ChaoticMass<Model::Type_>* mass) {
+	ReadVisitor<Model::Type_> visitor;
+	mass->Accept(visitor);
+	Model::Type_* put_off = Model::GetLastPutOff();
+	*put_off = visitor.GetLastPutOff();
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
