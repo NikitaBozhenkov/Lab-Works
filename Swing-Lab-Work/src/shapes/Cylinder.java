@@ -7,7 +7,7 @@ public class Cylinder extends RotationFigure {
         return height;
     }
 
-    Cylinder(double radius, double height) {
+    public Cylinder(double radius, double height) {
         super(3.14*radius*radius*height, 3.14*radius*radius, radius);
         this.height = height;
     }
