@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.MainFrame">
+  <grid id="27dc6" binding="controlPanel" layout-manager="GridLayoutManager" row-count="8" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="496" height="520"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="false"/>
+      <background color="-14737632"/>
+      <foreground color="-15921907"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="92135" class="javax.swing.JButton" binding="contentButton">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="439" height="80"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11316654"/>
+          <contentAreaFilled value="true"/>
+          <enabled value="true"/>
+          <focusPainted value="false"/>
+          <font name="Comic Sans MS" size="36" style="1"/>
+          <foreground color="-12093318"/>
+          <hideActionText value="false"/>
+          <horizontalTextPosition value="0"/>
+          <opaque value="true"/>
+          <text value="Show Content"/>
+          <verifyInputWhenFocusTarget value="false"/>
+        </properties>
+      </component>
+      <component id="349b" class="javax.swing.JButton" binding="createBagButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="439" height="80"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11316654"/>
+          <contentAreaFilled value="true"/>
+          <enabled value="true"/>
+          <focusPainted value="false"/>
+          <font name="Comic Sans MS" size="36" style="1"/>
+          <foreground color="-15631838"/>
+          <hideActionText value="false"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <inheritsPopupMenu value="false"/>
+          <opaque value="true"/>
+          <text value="Create Bag"/>
+          <verifyInputWhenFocusTarget value="false"/>
+          <verticalAlignment value="0"/>
+        </properties>
+      </component>
+      <component id="f5b9f" class="javax.swing.JButton" binding="addShapeButton">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="439" height="80"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11316654"/>
+          <contentAreaFilled value="true"/>
+          <enabled value="true"/>
+          <focusPainted value="false"/>
+          <font name="Comic Sans MS" size="36" style="1"/>
+          <foreground color="-8881638"/>
+          <hideActionText value="false"/>
+          <horizontalTextPosition value="0"/>
+          <inheritsPopupMenu value="false"/>
+          <opaque value="true"/>
+          <text value="Add Shape"/>
+          <verifyInputWhenFocusTarget value="false"/>
+        </properties>
+      </component>
+      <component id="30fb9" class="javax.swing.JLabel" binding="headerLabel">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="5" hsize-policy="1" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="439" height="79"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Comic Sans MS" size="36" style="1"/>
+          <foreground color="-1973791"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Bag Simulator"/>
+          <verticalAlignment value="0"/>
+        </properties>
+      </component>
+      <component id="1c122" class="javax.swing.JButton" binding="deleteBagButton">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="439" height="80"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11316654"/>
+          <contentAreaFilled value="true"/>
+          <doubleBuffered value="false"/>
+          <enabled value="true"/>
+          <focusCycleRoot value="false"/>
+          <focusPainted value="false"/>
+          <focusTraversalPolicyProvider value="false"/>
+          <font name="Comic Sans MS" size="36" style="1"/>
+          <foreground color="-8771544"/>
+          <hideActionText value="false"/>
+          <horizontalTextPosition value="0"/>
+          <inheritsPopupMenu value="false"/>
+          <opaque value="true"/>
+          <requestFocusEnabled value="true"/>
+          <rolloverEnabled value="true"/>
+          <selected value="false"/>
+          <text value="Delete Bag"/>
+          <verifyInputWhenFocusTarget value="false"/>
+          <visible value="true"/>
+        </properties>
+        <clientProperties>
+          <hideActionText class="java.lang.Boolean" value="false"/>
+          <html.disable class="java.lang.Boolean" value="false"/>
+        </clientProperties>
+      </component>
+      <component id="3cd10" class="javax.swing.JButton" binding="clearButton">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="4" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="439" height="80"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11316654"/>
+          <contentAreaFilled value="true"/>
+          <enabled value="true"/>
+          <focusPainted value="false"/>
+          <font name="Comic Sans MS" size="36" style="1"/>
+          <foreground color="-4473925"/>
+          <hideActionText value="false"/>
+          <horizontalTextPosition value="0"/>
+          <opaque value="true"/>
+          <text value="Clear Bag"/>
+          <verifyInputWhenFocusTarget value="false"/>
+        </properties>
+      </component>
+      <hspacer id="c6d6d">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="9e8b6">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="ac64">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+    </children>
+  </grid>
+</form>
