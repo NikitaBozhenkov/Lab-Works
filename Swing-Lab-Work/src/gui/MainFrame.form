@@ -24,10 +24,11 @@
           <enabled value="true"/>
           <focusPainted value="false"/>
           <font name="Comic Sans MS" size="36" style="1"/>
-          <foreground color="-12093318"/>
+          <foreground color="-10053221"/>
           <hideActionText value="false"/>
           <horizontalTextPosition value="0"/>
           <opaque value="true"/>
+          <requestFocusEnabled value="false"/>
           <text value="Show Content"/>
           <verifyInputWhenFocusTarget value="false"/>
         </properties>
@@ -44,12 +45,13 @@
           <enabled value="true"/>
           <focusPainted value="false"/>
           <font name="Comic Sans MS" size="36" style="1"/>
-          <foreground color="-15631838"/>
+          <foreground color="-15623389"/>
           <hideActionText value="false"/>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
           <inheritsPopupMenu value="false"/>
           <opaque value="true"/>
+          <requestFocusEnabled value="false"/>
           <text value="Create Bag"/>
           <verifyInputWhenFocusTarget value="false"/>
           <verticalAlignment value="0"/>
@@ -67,11 +69,12 @@
           <enabled value="true"/>
           <focusPainted value="false"/>
           <font name="Comic Sans MS" size="36" style="1"/>
-          <foreground color="-8881638"/>
+          <foreground color="-6710502"/>
           <hideActionText value="false"/>
           <horizontalTextPosition value="0"/>
           <inheritsPopupMenu value="false"/>
           <opaque value="true"/>
+          <requestFocusEnabled value="false"/>
           <text value="Add Shape"/>
           <verifyInputWhenFocusTarget value="false"/>
         </properties>
@@ -84,7 +87,7 @@
         </constraints>
         <properties>
           <font name="Comic Sans MS" size="36" style="1"/>
-          <foreground color="-1973791"/>
+          <foreground color="-986896"/>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
           <text value="Bag Simulator"/>
@@ -106,12 +109,12 @@
           <focusPainted value="false"/>
           <focusTraversalPolicyProvider value="false"/>
           <font name="Comic Sans MS" size="36" style="1"/>
-          <foreground color="-8771544"/>
+          <foreground color="-6608085"/>
           <hideActionText value="false"/>
           <horizontalTextPosition value="0"/>
           <inheritsPopupMenu value="false"/>
           <opaque value="true"/>
-          <requestFocusEnabled value="true"/>
+          <requestFocusEnabled value="false"/>
           <rolloverEnabled value="true"/>
           <selected value="false"/>
           <text value="Delete Bag"/>
@@ -139,6 +142,7 @@
           <hideActionText value="false"/>
           <horizontalTextPosition value="0"/>
           <opaque value="true"/>
+          <requestFocusEnabled value="false"/>
           <text value="Clear Bag"/>
           <verifyInputWhenFocusTarget value="false"/>
         </properties>

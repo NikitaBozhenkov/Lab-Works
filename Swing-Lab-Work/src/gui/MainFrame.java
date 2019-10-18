@@ -15,18 +15,23 @@ public class MainFrame extends JFrame {
     private JButton clearButton;
     private JButton deleteBagButton;
     private AddDialog addDialog;
-    Bag bag;
+    private Bag bag;
 
     public MainFrame() {
         //super("Bag Simulator");
         setContentPane(controlPanel);
-        this.setSize(600, 600);
-        this.setLocation(550, 100);
+        setSize(600, 600);
+        setLocation(550, 100);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        bag = new Bag(0);
 //        initializeMainFrame();
-//        addListeners();
+        addListeners();
 
+    }
+
+    public Bag getBag() {
+        return bag;
     }
 
     private void initializeMainFrame() {
@@ -50,15 +55,16 @@ public class MainFrame extends JFrame {
         createBagButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                addDialog = new AddDialog(MainFrame.this);
+                addDialog.setVisible(true);
             }
         });
 
         addShapeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addDialog = new AddDialog();
-                addDialog.setVisible(true);
+                // addDialog = new AddDialog();
+                // addDialog.setVisible(true);
             }
         });
 
@@ -110,10 +116,11 @@ public class MainFrame extends JFrame {
         contentButton.setFocusPainted(false);
         Font contentButtonFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, contentButton.getFont());
         if (contentButtonFont != null) contentButton.setFont(contentButtonFont);
-        contentButton.setForeground(new Color(-12093318));
+        contentButton.setForeground(new Color(-10053221));
         contentButton.setHideActionText(false);
         contentButton.setHorizontalTextPosition(0);
         contentButton.setOpaque(true);
+        contentButton.setRequestFocusEnabled(false);
         contentButton.setText("Show Content");
         contentButton.setVerifyInputWhenFocusTarget(false);
         controlPanel.add(contentButton, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
@@ -124,12 +131,13 @@ public class MainFrame extends JFrame {
         createBagButton.setFocusPainted(false);
         Font createBagButtonFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, createBagButton.getFont());
         if (createBagButtonFont != null) createBagButton.setFont(createBagButtonFont);
-        createBagButton.setForeground(new Color(-15631838));
+        createBagButton.setForeground(new Color(-15623389));
         createBagButton.setHideActionText(false);
         createBagButton.setHorizontalAlignment(0);
         createBagButton.setHorizontalTextPosition(0);
         createBagButton.setInheritsPopupMenu(false);
         createBagButton.setOpaque(true);
+        createBagButton.setRequestFocusEnabled(false);
         createBagButton.setText("Create Bag");
         createBagButton.setVerifyInputWhenFocusTarget(false);
         createBagButton.setVerticalAlignment(0);
@@ -141,18 +149,19 @@ public class MainFrame extends JFrame {
         addShapeButton.setFocusPainted(false);
         Font addShapeButtonFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, addShapeButton.getFont());
         if (addShapeButtonFont != null) addShapeButton.setFont(addShapeButtonFont);
-        addShapeButton.setForeground(new Color(-8881638));
+        addShapeButton.setForeground(new Color(-6710502));
         addShapeButton.setHideActionText(false);
         addShapeButton.setHorizontalTextPosition(0);
         addShapeButton.setInheritsPopupMenu(false);
         addShapeButton.setOpaque(true);
+        addShapeButton.setRequestFocusEnabled(false);
         addShapeButton.setText("Add Shape");
         addShapeButton.setVerifyInputWhenFocusTarget(false);
         controlPanel.add(addShapeButton, new com.intellij.uiDesigner.core.GridConstraints(2, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
         headerLabel = new JLabel();
         Font headerLabelFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, headerLabel.getFont());
         if (headerLabelFont != null) headerLabel.setFont(headerLabelFont);
-        headerLabel.setForeground(new Color(-1973791));
+        headerLabel.setForeground(new Color(-986896));
         headerLabel.setHorizontalAlignment(0);
         headerLabel.setHorizontalTextPosition(0);
         headerLabel.setText("Bag Simulator");
@@ -168,12 +177,12 @@ public class MainFrame extends JFrame {
         deleteBagButton.setFocusTraversalPolicyProvider(false);
         Font deleteBagButtonFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, deleteBagButton.getFont());
         if (deleteBagButtonFont != null) deleteBagButton.setFont(deleteBagButtonFont);
-        deleteBagButton.setForeground(new Color(-8771544));
+        deleteBagButton.setForeground(new Color(-6608085));
         deleteBagButton.setHideActionText(false);
         deleteBagButton.setHorizontalTextPosition(0);
         deleteBagButton.setInheritsPopupMenu(false);
         deleteBagButton.setOpaque(true);
-        deleteBagButton.setRequestFocusEnabled(true);
+        deleteBagButton.setRequestFocusEnabled(false);
         deleteBagButton.setRolloverEnabled(true);
         deleteBagButton.setSelected(false);
         deleteBagButton.setText("Delete Bag");
@@ -193,6 +202,7 @@ public class MainFrame extends JFrame {
         clearButton.setHideActionText(false);
         clearButton.setHorizontalTextPosition(0);
         clearButton.setOpaque(true);
+        clearButton.setRequestFocusEnabled(false);
         clearButton.setText("Clear Bag");
         clearButton.setVerifyInputWhenFocusTarget(false);
         controlPanel.add(clearButton, new com.intellij.uiDesigner.core.GridConstraints(4, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
