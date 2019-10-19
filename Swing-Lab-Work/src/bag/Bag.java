@@ -24,6 +24,10 @@ public class Bag {
         bag.sort(Shape::compareTo);
     }
 
+    public double getVolume() {
+        return volume;
+    }
+
     public void setVolume(double volume) {
         this.volume = volume;
     }

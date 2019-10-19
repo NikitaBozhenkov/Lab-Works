@@ -14,49 +14,33 @@ public class MainFrame extends JFrame {
     private JButton contentButton;
     private JButton clearButton;
     private JButton deleteBagButton;
-    private AddDialog addDialog;
+    private CreateBagDialog createBagDialog;
     private Bag bag;
 
     public MainFrame() {
-        //super("Bag Simulator");
         setContentPane(controlPanel);
         setSize(600, 600);
         setLocation(550, 100);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         bag = new Bag(0);
-//        initializeMainFrame();
         addListeners();
-
     }
 
-    public Bag getBag() {
+    void update() {
+        createBagButton.setEnabled(bag.getVolume() == 0);
+    }
+
+    Bag getBag() {
         return bag;
-    }
-
-    private void initializeMainFrame() {
-        JFrame mainFrame = new JFrame("Bag");
-        mainFrame.setSize(1000, 1000);
-        mainFrame.setLocation(430, 40);
-        mainFrame.setLayout(new GridLayout(5, 1));
-        headerLabel.setSize(100, 100);
-
-        mainFrame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent windowEvent) {
-                System.exit(0);
-            }
-        });
-
-        mainFrame.add(headerLabel);
-        mainFrame.setVisible(true);
     }
 
     private void addListeners() {
         createBagButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addDialog = new AddDialog(MainFrame.this);
-                addDialog.setVisible(true);
+                createBagDialog = new CreateBagDialog(MainFrame.this);
+                createBagDialog.setVisible(true);
             }
         });
 
