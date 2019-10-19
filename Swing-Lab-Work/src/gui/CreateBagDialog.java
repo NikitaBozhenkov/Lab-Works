@@ -1,5 +1,7 @@
 package gui;
 
+import exceptions.NegativeVolumeException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,13 +17,19 @@ public class CreateBagDialog extends JDialog {
         super();
         setContentPane(panel);
         setLocation(600, 300);
-        setSize(500, 300);
+        setSize(600, 600);
 
         OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.getBag().setVolume(Double.parseDouble(textField.getText()));
-                dispose();
+                try {
+                    System.out.println(Double.parseDouble(textField.getText()));
+                    mainFrame.getBag().setVolume(Double.parseDouble(textField.getText()));
+                    dispose();
+                } catch (NegativeVolumeException ex) {
+                    ErrorDialog dialog = new ErrorDialog(ex.getMessage());
+                    dialog.setVisible(true);
+                }
                 mainFrame.update();
             }
         });
@@ -62,7 +70,7 @@ public class CreateBagDialog extends JDialog {
         if (textFieldFont != null) textField.setFont(textFieldFont);
         textField.setText("");
         textField.setVerifyInputWhenFocusTarget(true);
-        panel.add(textField, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(200, 50), null, 0, false));
+        panel.add(textField, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(200, 122), null, 0, false));
         OKButton = new JButton();
         Font OKButtonFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, OKButton.getFont());
         if (OKButtonFont != null) OKButton.setFont(OKButtonFont);

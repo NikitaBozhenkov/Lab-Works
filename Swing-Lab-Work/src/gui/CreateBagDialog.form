@@ -31,7 +31,7 @@
       <component id="a6d50" class="javax.swing.JTextField" binding="textField">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="200" height="50"/>
+            <preferred-size width="200" height="122"/>
           </grid>
         </constraints>
         <properties>

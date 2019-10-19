@@ -1,5 +1,6 @@
 package bag;
 
+import exceptions.NegativeVolumeException;
 import exceptions.OverflowException;
 import shapes.Shape;
 
@@ -29,6 +30,9 @@ public class Bag {
     }
 
     public void setVolume(double volume) {
+        if (volume < 0) {
+            throw new NegativeVolumeException(volume, "Can't create bag with negative volume.");
+        }
         this.volume = volume;
     }
 
