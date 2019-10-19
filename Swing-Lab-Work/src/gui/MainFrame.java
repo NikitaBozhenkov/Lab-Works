@@ -69,6 +69,8 @@ public class MainFrame extends JFrame {
         deleteBagButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                bag.setVolume(0);
+                update();
             }
         });
     }

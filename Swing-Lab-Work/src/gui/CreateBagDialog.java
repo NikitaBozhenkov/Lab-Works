@@ -23,7 +23,6 @@ public class CreateBagDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    System.out.println(Double.parseDouble(textField.getText()));
                     mainFrame.getBag().setVolume(Double.parseDouble(textField.getText()));
                     dispose();
                 } catch (NegativeVolumeException ex) {
