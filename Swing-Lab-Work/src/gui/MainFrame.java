@@ -15,6 +15,7 @@ public class MainFrame extends JFrame {
     private JButton clearButton;
     private JButton deleteBagButton;
     private CreateBagDialog createBagDialog;
+    private ContentDialog contentDialog;
     private Bag bag;
 
     public MainFrame() {
@@ -55,7 +56,8 @@ public class MainFrame extends JFrame {
         contentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                contentDialog = new ContentDialog(MainFrame.this);
+                contentDialog.setVisible(true);
             }
         });
 
