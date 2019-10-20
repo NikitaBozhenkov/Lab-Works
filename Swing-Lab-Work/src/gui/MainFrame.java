@@ -10,7 +10,7 @@ public class MainFrame extends JFrame {
     private JPanel controlPanel;
     private JLabel headerLabel;
     private JButton createBagButton;
-    private JButton addShapeButton;
+    private JButton exitButton;
     private JButton contentButton;
     private JButton clearButton;
     private JButton deleteBagButton;
@@ -45,11 +45,10 @@ public class MainFrame extends JFrame {
             }
         });
 
-        addShapeButton.addActionListener(new ActionListener() {
+        exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // addDialog = new AddDialog();
-                // addDialog.setVisible(true);
+                System.exit(0);
             }
         });
 
@@ -93,7 +92,7 @@ public class MainFrame extends JFrame {
      */
     private void $$$setupUI$$$() {
         controlPanel = new JPanel();
-        controlPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(8, 5, new Insets(0, 0, 0, 0), -1, -1));
+        controlPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(7, 5, new Insets(0, 0, 0, 0), -1, -1));
         controlPanel.setAutoscrolls(false);
         controlPanel.setBackground(new Color(-14737632));
         controlPanel.setForeground(new Color(-15921907));
@@ -109,9 +108,9 @@ public class MainFrame extends JFrame {
         contentButton.setHorizontalTextPosition(0);
         contentButton.setOpaque(true);
         contentButton.setRequestFocusEnabled(false);
-        contentButton.setText("Show Content");
+        contentButton.setText("Go to Bag");
         contentButton.setVerifyInputWhenFocusTarget(false);
-        controlPanel.add(contentButton, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
+        controlPanel.add(contentButton, new com.intellij.uiDesigner.core.GridConstraints(2, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
         createBagButton = new JButton();
         createBagButton.setBackground(new Color(-11316654));
         createBagButton.setContentAreaFilled(true);
@@ -130,22 +129,6 @@ public class MainFrame extends JFrame {
         createBagButton.setVerifyInputWhenFocusTarget(false);
         createBagButton.setVerticalAlignment(0);
         controlPanel.add(createBagButton, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
-        addShapeButton = new JButton();
-        addShapeButton.setBackground(new Color(-11316654));
-        addShapeButton.setContentAreaFilled(true);
-        addShapeButton.setEnabled(true);
-        addShapeButton.setFocusPainted(false);
-        Font addShapeButtonFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, addShapeButton.getFont());
-        if (addShapeButtonFont != null) addShapeButton.setFont(addShapeButtonFont);
-        addShapeButton.setForeground(new Color(-6710502));
-        addShapeButton.setHideActionText(false);
-        addShapeButton.setHorizontalTextPosition(0);
-        addShapeButton.setInheritsPopupMenu(false);
-        addShapeButton.setOpaque(true);
-        addShapeButton.setRequestFocusEnabled(false);
-        addShapeButton.setText("Add Shape");
-        addShapeButton.setVerifyInputWhenFocusTarget(false);
-        controlPanel.add(addShapeButton, new com.intellij.uiDesigner.core.GridConstraints(2, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
         headerLabel = new JLabel();
         Font headerLabelFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, headerLabel.getFont());
         if (headerLabelFont != null) headerLabel.setFont(headerLabelFont);
@@ -178,7 +161,7 @@ public class MainFrame extends JFrame {
         deleteBagButton.setVisible(true);
         deleteBagButton.putClientProperty("hideActionText", Boolean.FALSE);
         deleteBagButton.putClientProperty("html.disable", Boolean.FALSE);
-        controlPanel.add(deleteBagButton, new com.intellij.uiDesigner.core.GridConstraints(5, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
+        controlPanel.add(deleteBagButton, new com.intellij.uiDesigner.core.GridConstraints(4, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
         clearButton = new JButton();
         clearButton.setBackground(new Color(-11316654));
         clearButton.setContentAreaFilled(true);
@@ -186,20 +169,36 @@ public class MainFrame extends JFrame {
         clearButton.setFocusPainted(false);
         Font clearButtonFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, clearButton.getFont());
         if (clearButtonFont != null) clearButton.setFont(clearButtonFont);
-        clearButton.setForeground(new Color(-4473925));
+        clearButton.setForeground(new Color(-921103));
         clearButton.setHideActionText(false);
         clearButton.setHorizontalTextPosition(0);
         clearButton.setOpaque(true);
         clearButton.setRequestFocusEnabled(false);
         clearButton.setText("Clear Bag");
         clearButton.setVerifyInputWhenFocusTarget(false);
-        controlPanel.add(clearButton, new com.intellij.uiDesigner.core.GridConstraints(4, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
+        controlPanel.add(clearButton, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
         controlPanel.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
         controlPanel.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(1, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer3 = new com.intellij.uiDesigner.core.Spacer();
-        controlPanel.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(7, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        controlPanel.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(6, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        exitButton = new JButton();
+        exitButton.setBackground(new Color(-11316654));
+        exitButton.setContentAreaFilled(true);
+        exitButton.setEnabled(true);
+        exitButton.setFocusPainted(false);
+        Font exitButtonFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, exitButton.getFont());
+        if (exitButtonFont != null) exitButton.setFont(exitButtonFont);
+        exitButton.setForeground(new Color(-6710502));
+        exitButton.setHideActionText(false);
+        exitButton.setHorizontalTextPosition(0);
+        exitButton.setInheritsPopupMenu(false);
+        exitButton.setOpaque(true);
+        exitButton.setRequestFocusEnabled(false);
+        exitButton.setText("EXIT");
+        exitButton.setVerifyInputWhenFocusTarget(false);
+        controlPanel.add(exitButton, new com.intellij.uiDesigner.core.GridConstraints(5, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(439, 80), null, 0, false));
     }
 
     /**

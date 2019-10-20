@@ -185,7 +185,7 @@ public class AddDialog extends JDialog {
         if (figureListFont != null) figureList.setFont(figureListFont);
         figureList.setForeground(new Color(-1513240));
         figureList.setLayoutOrientation(0);
-        figureList.setSelectionBackground(new Color(-8947848));
+        figureList.setSelectionBackground(new Color(-11842740));
         figureList.setSelectionForeground(new Color(-923159));
         figureList.setSelectionMode(0);
         panel.add(figureList, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_NORTH, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(150, -1), null, 0, false));
