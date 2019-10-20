@@ -84,8 +84,9 @@
           <background color="-14737632"/>
           <font name="Comic Sans MS" size="28" style="1"/>
           <foreground color="-199437"/>
+          <opaque value="true"/>
           <selectionBackground color="-11711666"/>
-          <selectionForeground color="-9410456"/>
+          <selectionForeground color="-923159"/>
           <selectionMode value="0"/>
         </properties>
       </component>

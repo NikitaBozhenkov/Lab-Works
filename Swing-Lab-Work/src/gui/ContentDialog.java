@@ -127,8 +127,9 @@ public class ContentDialog extends JDialog {
         Font listFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 28, list.getFont());
         if (listFont != null) list.setFont(listFont);
         list.setForeground(new Color(-199437));
+        list.setOpaque(true);
         list.setSelectionBackground(new Color(-11711666));
-        list.setSelectionForeground(new Color(-9410456));
+        list.setSelectionForeground(new Color(-923159));
         list.setSelectionMode(0);
         panel.add(list, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 350), null, 0, false));
     }
