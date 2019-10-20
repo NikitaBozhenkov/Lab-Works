@@ -31,7 +31,6 @@ public class AddDialog extends JDialog {
     private JLabel mainLabel;
     private JList<String> figureList;
     private JButton closeButton;
-    private DefaultListModel<String> figureModel;
     private MainFrame mainFrame;
     private ContentDialog contentDialog;
 
@@ -59,7 +58,7 @@ public class AddDialog extends JDialog {
         setLocation(600, 150);
         setSize(770, 750);
 
-        figureModel = new DefaultListModel<>();
+        DefaultListModel<String> figureModel = new DefaultListModel<>();
         figureModel.addElement("Circle");
         figureModel.addElement("Cube");
         figureModel.addElement("Cylinder");

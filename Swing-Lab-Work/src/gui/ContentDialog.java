@@ -1,7 +1,5 @@
 package gui;
 
-import main.Main;
-import shapes.Cube;
 import shapes.Shape;
 
 import javax.swing.*;
