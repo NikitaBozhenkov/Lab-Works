@@ -2,6 +2,6 @@ package geometricFigures;
 
 public class Square extends GeometricFigure {
     public Square(double side1) {
-        super(side1, 0, "Square");
+        super(side1, 0, side1*side1, "Square");
     }
 }

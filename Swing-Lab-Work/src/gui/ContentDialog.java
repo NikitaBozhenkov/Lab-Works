@@ -31,6 +31,8 @@ public class ContentDialog extends JDialog {
         setLocation(600, 150);
         setSize(770, 700);
 
+        update();
+
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,17 +43,27 @@ public class ContentDialog extends JDialog {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.getBag().deleteShape(list.getSelectedValue());
-                update();
+                try {
+                    mainFrame.getBag().deleteShape(list.getSelectedValue());
+                    update();
+                } catch (NullPointerException ex) {
+                    ErrorDialog errorDialog = new ErrorDialog("No selection or empty bag.");
+                    errorDialog.setVisible(true);
+                }
             }
         });
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddDialog addDialog = new AddDialog(mainFrame, ContentDialog.this);
-                addDialog.setVisible(true);
-                update();
+                if (mainFrame.getBag().getCapacity() == 0) {
+                    ErrorDialog errorDialog = new ErrorDialog("You haven't created a bag");
+                    errorDialog.setVisible(true);
+                } else {
+                    AddDialog addDialog = new AddDialog(mainFrame, ContentDialog.this);
+                    addDialog.setVisible(true);
+                    update();
+                }
             }
         });
     }

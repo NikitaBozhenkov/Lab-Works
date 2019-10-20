@@ -1,7 +1,9 @@
 package gui;
 
-import exceptions.NegativeVolumeException;
+import converter.Converter;
+import exceptions.VolumeException;
 import exceptions.OverflowException;
+import geometricFigures.Circle;
 import geometricFigures.Square;
 import geometricFigures.Triangle;
 import shapes.Cube;
@@ -28,6 +30,7 @@ public class AddDialog extends JDialog {
     private JLabel label3;
     private JLabel mainLabel;
     private JList<String> figureList;
+    private JButton closeButton;
     private DefaultListModel<String> figureModel;
     private MainFrame mainFrame;
     private ContentDialog contentDialog;
@@ -54,7 +57,7 @@ public class AddDialog extends JDialog {
         setContentPane(panel);
         addListeners();
         setLocation(600, 150);
-        setSize(770, 650);
+        setSize(770, 750);
 
         figureModel = new DefaultListModel<>();
         figureModel.addElement("Circle");
@@ -72,7 +75,6 @@ public class AddDialog extends JDialog {
         textField2.setVisible(false);
         label3.setVisible(false);
         textField3.setVisible(false);
-
     }
 
     private void addListeners() {
@@ -90,13 +92,25 @@ public class AddDialog extends JDialog {
                                 mainFrame.getBag().addFigure(new Cube(Double.parseDouble(textField2.getText())));
                                 break;
                             }
-//                        case ("Square"): {
-//                            mainFrame.getBag().addFigure(new Square(Double.parseDouble(textField2.getText())));
-//                            break;
-//                        }
-//                        case ("Circle"): {
-//                            break;
-//                        }
+                            case ("Square"): {
+                                Converter converter = new Converter();
+                                Square figure = new Square(Double.parseDouble(textField2.getText()));
+                                mainFrame.getBag().addFigure(converter.convert(figure, mainFrame.getBag()));
+                                break;
+                            }
+                            case ("Circle"): {
+                                Converter converter = new Converter();
+                                Circle figure = new Circle(Double.parseDouble(textField2.getText()));
+                                mainFrame.getBag().addFigure(converter.convert(figure, mainFrame.getBag()));
+                                break;
+                            }
+                            case ("Triangle"): {
+                                Converter converter = new Converter();
+                                Triangle figure = new Triangle(Double.parseDouble(textField1.getText()),
+                                        Double.parseDouble(textField3.getText()));
+                                mainFrame.getBag().addFigure(converter.convert(figure, mainFrame.getBag()));
+                                break;
+                            }
                             case ("Sphere"): {
                                 mainFrame.getBag().addFigure(new Sphere(Double.parseDouble(textField2.getText())));
                                 break;
@@ -116,7 +130,7 @@ public class AddDialog extends JDialog {
                     }
                     contentDialog.update();
                     dispose();
-                } catch (NegativeVolumeException ex) {
+                } catch (VolumeException ex) {
                     ErrorDialog errorDialog = new ErrorDialog(ex.getMessage());
                     errorDialog.setVisible(true);
                 } catch (OverflowException ex) {
@@ -169,6 +183,14 @@ public class AddDialog extends JDialog {
                     }
                 }
             }
+
+        });
+
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
         });
 
     }
@@ -189,7 +211,7 @@ public class AddDialog extends JDialog {
      */
     private void $$$setupUI$$$() {
         panel = new JPanel();
-        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(5, 4, new Insets(0, 0, 0, 0), -1, -1));
+        panel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(6, 4, new Insets(0, 0, 0, 0), -1, -1));
         panel.setBackground(new Color(-14737632));
         panel.setForeground(new Color(-2107690));
         mainLabel = new JLabel();
@@ -259,6 +281,14 @@ public class AddDialog extends JDialog {
         oKButton.setRequestFocusEnabled(false);
         oKButton.setText("OK");
         panel.add(oKButton, new com.intellij.uiDesigner.core.GridConstraints(4, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, 50), new Dimension(100, 50), 0, false));
+        closeButton = new JButton();
+        closeButton.setBackground(new Color(-11316654));
+        Font closeButtonFont = this.$$$getFont$$$("Comic Sans MS", Font.BOLD, 36, closeButton.getFont());
+        if (closeButtonFont != null) closeButton.setFont(closeButtonFont);
+        closeButton.setForeground(new Color(-921103));
+        closeButton.setRequestFocusEnabled(false);
+        closeButton.setText("Close");
+        panel.add(closeButton, new com.intellij.uiDesigner.core.GridConstraints(5, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(130, 50), new Dimension(130, 50), 0, false));
     }
 
     /**

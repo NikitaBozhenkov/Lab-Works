@@ -1,6 +1,6 @@
 package gui;
 
-import exceptions.NegativeVolumeException;
+import exceptions.VolumeException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,9 +24,13 @@ public class CreateBagDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     mainFrame.getBag().setVolume(Double.parseDouble(textField.getText()));
+                    mainFrame.getBag().setCapacity(Double.parseDouble(textField.getText()));
                     dispose();
-                } catch (NegativeVolumeException ex) {
+                } catch (VolumeException ex) {
                     ErrorDialog dialog = new ErrorDialog(ex.getMessage());
+                    dialog.setVisible(true);
+                } catch (NumberFormatException ex) {
+                    ErrorDialog dialog = new ErrorDialog("Input field is empty");
                     dialog.setVisible(true);
                 }
                 mainFrame.update();

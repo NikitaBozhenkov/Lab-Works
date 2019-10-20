@@ -26,10 +26,13 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         bag = new Bag(0);
         addListeners();
+        update();
     }
 
     void update() {
-        createBagButton.setEnabled(bag.getVolume() == 0);
+        createBagButton.setEnabled(bag.getCapacity() == 0);
+        deleteBagButton.setEnabled(bag.getCapacity() != 0);
+        clearButton.setEnabled(bag.getCapacity() != 0);
     }
 
     Bag getBag() {
@@ -70,7 +73,7 @@ public class MainFrame extends JFrame {
         deleteBagButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bag.setVolume(0);
+                bag.setCapacity(0);
                 bag.clear();
                 update();
             }
