@@ -12,8 +12,8 @@ public abstract class ConvexFigure extends Shape {
         return side;
     }
 
-    ConvexFigure(double volume, double area, double side) {
-        super(volume);
+    ConvexFigure(double volume, double area, double side, String className) {
+        super(volume, className);
         this.area = area;
         this.side = side;
     }

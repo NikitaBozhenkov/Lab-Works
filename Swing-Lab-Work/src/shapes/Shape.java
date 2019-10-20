@@ -1,10 +1,18 @@
 package shapes;
 
-public abstract class Shape implements Comparable<Shape> {
+import figure.Figure;
+
+public abstract class Shape extends Figure implements Comparable<Shape> {
     private double volume;
 
-    public Shape(double volume) {
+    public Shape(double volume, String className) {
+        super(className);
         this.volume = volume;
+    }
+
+    @Override
+    public String toString() {
+        return getClassName() + ", volume: " + getVolume();
     }
 
     @Override

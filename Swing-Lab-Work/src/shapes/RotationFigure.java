@@ -12,8 +12,8 @@ public abstract class RotationFigure extends Shape {
         return radius;
     }
 
-    RotationFigure(double volume, double area, double radius) {
-        super(volume);
+    RotationFigure(double volume, double area, double radius, String className) {
+        super(volume, className);
         this.area = area;
         this.radius = radius;
     }

@@ -1,13 +1,8 @@
 package geometricFigures;
 
-import shapes.Cube;
-import shapes.Pyramid;
-import shapes.Shape;
+import figure.Figure;
 
-import java.util.Map;
-import java.util.function.BiFunction;
-
-public abstract class GeometricFigure {
+public abstract class GeometricFigure extends Figure {
     private double side1;
     private double side2;
 
@@ -23,7 +18,13 @@ public abstract class GeometricFigure {
         return side2;
     }
 
-    GeometricFigure(double side1, double side2) {
+    @Override
+    public String toString() {
+        return getClassName();
+    }
+
+    GeometricFigure(double side1, double side2, String className) {
+        super(className);
         this.side1 = side1;
         this.side2 = side2;
     }

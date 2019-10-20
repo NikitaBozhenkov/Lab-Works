@@ -8,7 +8,7 @@ public class Pyramid extends ConvexFigure {
     }
 
     public Pyramid(double side, double baseHeight, double height) {
-        super(side*baseHeight*height/6, side*baseHeight/2, side);
+        super(side*baseHeight*height/6, side*baseHeight/2, side, "Pyramid");
         this.height = height;
     }
 }
