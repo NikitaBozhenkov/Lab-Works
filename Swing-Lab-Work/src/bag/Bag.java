@@ -20,7 +20,7 @@ public class Bag {
             bag.add(figure);
             volume -= figure.getVolume();
         } else {
-            throw new OverflowException(bag.size(), "Can't put the figure");
+            throw new OverflowException(volume, "Can't put the figure");
         }
         bag.sort(Shape::compareTo);
     }
@@ -31,7 +31,7 @@ public class Bag {
 
     public void setVolume(double volume) {
         if (volume < 0) {
-            throw new NegativeVolumeException(volume, "Can't create bag with negative volume.");
+            throw new NegativeVolumeException("Can't create bag with negative volume.");
         }
         this.volume = volume;
     }
@@ -46,6 +46,7 @@ public class Bag {
 
     public void deleteShape(Shape shape) {
         bag.remove(shape);
+        volume += shape.getVolume();
     }
 
     public void clear() {

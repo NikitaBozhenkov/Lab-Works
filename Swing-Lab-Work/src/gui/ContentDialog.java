@@ -26,7 +26,6 @@ public class ContentDialog extends JDialog {
         setContentPane(panel);
 
         defaultListModel = new DefaultListModel<>();
-        defaultListModel.addElement(new Cube(5));
         list.setModel(defaultListModel);
 
         setLocation(600, 150);
@@ -50,14 +49,14 @@ public class ContentDialog extends JDialog {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddDialog addDialog = new AddDialog(mainFrame);
+                AddDialog addDialog = new AddDialog(mainFrame, ContentDialog.this);
                 addDialog.setVisible(true);
                 update();
             }
         });
     }
 
-    private void update() {
+    void update() {
         defaultListModel.clear();
         for (int i = 0; i < mainFrame.getBag().getSize(); ++i) {
             defaultListModel.addElement(mainFrame.getBag().getElement(i));

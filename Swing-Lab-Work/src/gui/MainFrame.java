@@ -71,6 +71,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bag.setVolume(0);
+                bag.clear();
                 update();
             }
         });

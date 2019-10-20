@@ -1,13 +1,20 @@
 package gui;
 
-import figure.Figure;
-import geometricFigures.Circle;
+import exceptions.NegativeVolumeException;
+import exceptions.OverflowException;
+import geometricFigures.Square;
+import geometricFigures.Triangle;
+import shapes.Cube;
+import shapes.Cylinder;
 import shapes.Pyramid;
+import shapes.Sphere;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AddDialog extends JDialog {
 
@@ -22,6 +29,8 @@ public class AddDialog extends JDialog {
     private JLabel mainLabel;
     private JList<String> figureList;
     private DefaultListModel<String> figureModel;
+    private MainFrame mainFrame;
+    private ContentDialog contentDialog;
 
     private void changeInputMenu(boolean label1State, boolean label2State, boolean label3State,
                                  String label1Text, String label2Text, String label3Text) {
@@ -36,9 +45,11 @@ public class AddDialog extends JDialog {
         textField3.setVisible(label3State);
     }
 
-    AddDialog(MainFrame mainFrame) {
+    AddDialog(MainFrame mainFrame, ContentDialog contentDialog) {
+        this.mainFrame = mainFrame;
+        this.contentDialog = contentDialog;
         setContentPane(panel);
-
+        addListeners();
         setLocation(600, 150);
         setSize(770, 650);
 
@@ -59,11 +70,53 @@ public class AddDialog extends JDialog {
         label3.setVisible(false);
         textField3.setVisible(false);
 
+    }
 
+    private void addListeners() {
         oKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                try {
+                    if (!figureList.isSelectionEmpty()) {
+                        switch (figureList.getSelectedValue()) {
+                            case ("Cube"): {
+                                mainFrame.getBag().addFigure(new Cube(Double.parseDouble(textField2.getText())));
+                                break;
+                            }
+//                        case ("Square"): {
+//                            mainFrame.getBag().addFigure(new Square(Double.parseDouble(textField2.getText())));
+//                            break;
+//                        }
+//                        case ("Circle"): {
+//                            break;
+//                        }
+                            case ("Sphere"): {
+                                mainFrame.getBag().addFigure(new Sphere(Double.parseDouble(textField2.getText())));
+                                break;
+                            }
+                            case ("Cylinder"): {
+                                mainFrame.getBag().addFigure(new Cylinder(Double.parseDouble(textField1.getText()),
+                                        Double.parseDouble(textField3.getText())));
+                                break;
+                            }
+                            case ("Pyramid"): {
+                                mainFrame.getBag().addFigure(new Pyramid(Double.parseDouble(textField1.getText()),
+                                        Double.parseDouble(textField2.getText()),
+                                        Double.parseDouble(textField3.getText())));
+                                break;
+                            }
+                        }
+                    }
+                    contentDialog.update();
+                    dispose();
+                } catch (NegativeVolumeException ex) {
+                    ErrorDialog errorDialog = new ErrorDialog(ex.getMessage());
+                    errorDialog.setVisible(true);
+                } catch (OverflowException ex) {
+                    ErrorDialog errorDialog = new ErrorDialog(ex.getMessage() + ". Volume = " + ex.getVolume());
+                    errorDialog.setVisible(true);
+                }
+
             }
         });
 
@@ -106,8 +159,6 @@ public class AddDialog extends JDialog {
                     }
                 }
             }
-        });
-        figureList.addMouseListener(new MouseAdapter() {
         });
     }
 

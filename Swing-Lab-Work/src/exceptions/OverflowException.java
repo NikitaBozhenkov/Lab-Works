@@ -1,14 +1,14 @@
 package exceptions;
 
 public class OverflowException extends RuntimeException {
-    private int size;
+    private double volume;
 
-    public int getSize() {
-        return size;
+    public double getVolume() {
+        return volume;
     }
 
-    public OverflowException(int size, String message) {
+    public OverflowException(double volume, String message) {
         super(message);
-        this.size = size;
+        this.volume = volume;
     }
 }
