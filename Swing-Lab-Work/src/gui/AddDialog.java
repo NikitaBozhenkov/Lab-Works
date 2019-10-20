@@ -37,12 +37,15 @@ public class AddDialog extends JDialog {
         label1.setVisible(label1State);
         label1.setText(label1Text);
         textField1.setVisible(label1State);
+        textField1.setText("");
         label2.setVisible(label2State);
         label2.setText(label2Text);
         textField2.setVisible(label2State);
+        textField2.setText("");
         label3.setVisible(label3State);
         label3.setText(label3Text);
         textField3.setVisible(label3State);
+        textField3.setText("");
     }
 
     AddDialog(MainFrame mainFrame, ContentDialog contentDialog) {
@@ -78,6 +81,10 @@ public class AddDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (!figureList.isSelectionEmpty()) {
+                        if (textField1.getText().isEmpty() && textField2.getText().isEmpty() && textField3.getText().isEmpty()) {
+                            dispose();
+                            return;
+                        }
                         switch (figureList.getSelectedValue()) {
                             case ("Cube"): {
                                 mainFrame.getBag().addFigure(new Cube(Double.parseDouble(textField2.getText())));
@@ -114,6 +121,9 @@ public class AddDialog extends JDialog {
                     errorDialog.setVisible(true);
                 } catch (OverflowException ex) {
                     ErrorDialog errorDialog = new ErrorDialog(ex.getMessage() + ". Volume = " + ex.getVolume());
+                    errorDialog.setVisible(true);
+                } catch (NumberFormatException ex) {
+                    ErrorDialog errorDialog = new ErrorDialog("Input Field is empty");
                     errorDialog.setVisible(true);
                 }
 
@@ -160,6 +170,7 @@ public class AddDialog extends JDialog {
                 }
             }
         });
+
     }
 
     {
