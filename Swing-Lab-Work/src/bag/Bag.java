@@ -1,10 +1,11 @@
 package bag;
 
-import exceptions.VolumeException;
 import exceptions.OverflowException;
+import exceptions.VolumeException;
 import shapes.Shape;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Bag {
     private double freeVolume;
@@ -27,7 +28,7 @@ public class Bag {
             } else {
                 throw new OverflowException(freeVolume, "Can't put the figure");
             }
-            bag.sort(Shape::compareTo);
+        Collections.sort(bag);
     }
 
     public double getFreeVolume() {
