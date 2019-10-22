@@ -14,7 +14,7 @@ public class Bag {
     public Bag(double volume) {
         this.volume = volume;
         this.capacity = volume;
-        bag = new ArrayList<Shape>(1);
+        bag = new ArrayList<Shape>(0);
     }
 
     public void addFigure(Shape figure) throws OverflowException {
