@@ -72,12 +72,13 @@ public class Bag {
         }
     }
 
+    @Override
     public String toString() {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (Shape shape : bag) {
-            output += "Shape - " + shape.getClass().getName() + ", " + "Volume - " + shape.getVolume() + "\n";
+            output.append("Shape - ").append(shape.getClass().getName()).append(", ").append("Volume - ").append(shape.getVolume()).append("\n");
         }
-        return output;
+        return output.toString();
     }
 }
 
