@@ -21,7 +21,6 @@ public class Bag {
     }
 
     public void addFigure(Shape figure) throws OverflowException {
-        if (figure.getVolume() >= 0.00001) {
             if (freeVolume >= figure.getVolume()) {
                 bag.add(figure);
                 freeVolume -= figure.getVolume();
@@ -29,7 +28,6 @@ public class Bag {
                 throw new OverflowException(freeVolume, "Can't put the figure");
             }
             bag.sort(Shape::compareTo);
-        }
     }
 
     public double getFreeVolume() {
