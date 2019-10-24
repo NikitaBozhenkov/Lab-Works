@@ -3,24 +3,20 @@ package geometricFigures;
 import figure.Figure;
 
 public abstract class GeometricFigure extends Figure {
-    private double side1;
-    private double side2;
-    private double square;
+    private double parameter1;
+    private double parameter2;
+    private double area;
 
-    public double getSide() {
-        return side1;
+    public double getFirstParameter() {
+        return parameter1;
     }
 
-    public double getSquare() {
-        return square;
+    public double getArea() {
+        return area;
     }
 
-    public double getRadius() {
-        return side1;
-    }
-
-    public double getHeight() {
-        return side2;
+    public double getSecondParameter() {
+        return parameter2;
     }
 
     @Override
@@ -28,11 +24,11 @@ public abstract class GeometricFigure extends Figure {
         return getClassName();
     }
 
-    GeometricFigure(double side1, double side2, double square, String className) {
+    GeometricFigure(double parameter1, double parameter2, double area, String className) {
         super(className);
-        this.side1 = side1;
-        this.side2 = side2;
-        this.square = square;
+        this.parameter1 = parameter1;
+        this.parameter2 = parameter2;
+        this.area = area;
     }
 
     @Override
