@@ -1,6 +1,6 @@
 package geometricFigures;
 
-public class Circle extends GeometricFigure {
+public class Circle extends PlaneFigure {
     public Circle(double radius) {
         super(radius, 0, radius*radius*3.14, "Circle");
     }

@@ -1,13 +1,13 @@
 package converter;
 
 import bag.Bag;
-import geometricFigures.GeometricFigure;
+import geometricFigures.PlaneFigure;
 import shapes.*;
 
 import java.util.Random;
 
 public class Converter {
-    public <U extends GeometricFigure> Shape convert(U figure, Bag bag) {
+    public <U extends PlaneFigure> Shape convert(U figure, Bag bag) {
         Random random = new Random();
         if (figure.getArea() > bag.getVolume() * 100) {
             throw new RuntimeException("Too big figure to create");

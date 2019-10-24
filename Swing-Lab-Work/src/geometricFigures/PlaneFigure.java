@@ -2,7 +2,7 @@ package geometricFigures;
 
 import figure.Figure;
 
-public abstract class GeometricFigure extends Figure {
+public abstract class PlaneFigure extends Figure implements Comparable<PlaneFigure> {
     private double firstField;
     private double secondField;
     private double area;
@@ -24,11 +24,16 @@ public abstract class GeometricFigure extends Figure {
         return getClassName();
     }
 
-    GeometricFigure(double firstField, double secondField, double area, String className) {
+    PlaneFigure(double firstField, double secondField, double area, String className) {
         super(className);
         this.firstField = firstField;
         this.secondField = secondField;
         this.area = area;
+    }
+
+    @Override
+    public int compareTo(PlaneFigure o) {
+        return Double.compare(area, o.getArea());
     }
 
     @Override
