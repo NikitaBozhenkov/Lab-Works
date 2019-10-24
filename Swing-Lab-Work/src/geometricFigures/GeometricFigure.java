@@ -34,4 +34,9 @@ public abstract class GeometricFigure extends Figure {
         this.side2 = side2;
         this.square = square;
     }
+
+    @Override
+    public String getDimension() {
+        return "Two";
+    }
 }

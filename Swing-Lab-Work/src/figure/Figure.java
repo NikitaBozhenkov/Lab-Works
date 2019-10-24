@@ -11,5 +11,5 @@ public abstract class Figure {
         return className;
     }
 
-    public abstract String toString();
+    public abstract String getDimension();
 }

@@ -22,6 +22,11 @@ public abstract class Shape extends Figure implements Comparable<Shape> {
         return Double.compare(o.getVolume(), this.getVolume());
     }
 
+    @Override
+    public String getDimension() {
+        return "Three";
+    }
+
     public double getVolume() {
         return volume;
     }
