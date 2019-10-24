@@ -1,21 +1,20 @@
 package converter;
 
-import bag.Bag;
 import geometricFigures.PlaneFigure;
 import shapes.*;
 
 import java.util.Random;
 
 public class Converter {
-    public <U extends PlaneFigure> Shape convert(U figure, Bag bag) {
+    public <U extends PlaneFigure> Shape convert(U figure, double volume) {
         Random random = new Random();
-        if (figure.getArea() > bag.getVolume() * 100) {
+        if (figure.getArea() > volume * 100) {
             throw new RuntimeException("Too big figure to create");
         }
         else if (figure.getArea() < 0.01) {
             throw new RuntimeException("Too small figure to create");
         }
-        double height = Math.round((Math.random()*(bag.getVolume()/figure.getArea()+0.999) + 0.001) * 100) /100;
+        double height = (double)Math.round((Math.random()*(volume/figure.getArea()+0.999) + 0.001) * 100) /100;
         switch (figure.toString()) {
             case "Circle" : {
                 double threshhold = 2.0;
