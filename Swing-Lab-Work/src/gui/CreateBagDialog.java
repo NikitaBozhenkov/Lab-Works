@@ -1,5 +1,6 @@
 package gui;
 
+import bag.Bag;
 import exceptions.VolumeException;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ public class CreateBagDialog extends JDialog {
     private JTextField textField;
     private JButton OKButton;
     private JPanel panel;
+    private double bagCapacity;
 
     CreateBagDialog(MainFrame mainFrame) {
         super();
@@ -23,8 +25,7 @@ public class CreateBagDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    mainFrame.getBag().setVolume(Double.parseDouble(textField.getText()));
-                    mainFrame.getBag().setCapacity(Double.parseDouble(textField.getText()));
+                    mainFrame.setBag(new Bag(Double.parseDouble(textField.getText())));
                     dispose();
                 } catch (VolumeException ex) {
                     ErrorDialog dialog = new ErrorDialog(ex.getMessage());
@@ -33,9 +34,13 @@ public class CreateBagDialog extends JDialog {
                     ErrorDialog dialog = new ErrorDialog("Input field is empty");
                     dialog.setVisible(true);
                 }
-                mainFrame.update();
+                mainFrame.updateButtonsStatus(false, true, true);
             }
         });
+    }
+
+    double getBagCapacity() {
+        return bagCapacity;
     }
 
     {
