@@ -14,7 +14,7 @@ public class Bag {
 
     public Bag(double capacity) {
         if (capacity < 0) {
-            throw new VolumeException("Can't create bag with negative volume.");
+            throw new VolumeException("Can't create bag with negative volume.", 1);
         }
         this.freeVolume = capacity;
         this.capacity = capacity;
