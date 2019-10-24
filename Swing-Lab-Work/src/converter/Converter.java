@@ -18,7 +18,8 @@ public class Converter {
         double height = Math.round((Math.random()*(bag.getVolume()/figure.getArea()+0.999) + 0.001) * 100) /100;
         switch (figure.toString()) {
             case "Circle" : {
-                if (random.ints(0,5).findFirst().getAsInt() < 2) {
+                double threshhold = 2.0;
+                if (random.nextDouble() < threshhold) {
                     return new Sphere(figure.getFirstField());
                 } else {
                     return new Cylinder(figure.getFirstField(), height);
