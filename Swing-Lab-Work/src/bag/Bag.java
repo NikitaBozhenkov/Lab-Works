@@ -1,51 +1,42 @@
 package bag;
 
-import exceptions.VolumeException;
 import exceptions.OverflowException;
+import exceptions.VolumeException;
 import shapes.Shape;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Bag {
-    private double volume;
+    private double freeVolume;
     private double capacity;
     private ArrayList<Shape> bag;
 
-    public Bag(double volume) {
-        this.volume = volume;
-        this.capacity = volume;
-        bag = new ArrayList<Shape>(1);
+    public Bag(double capacity) {
+        if (capacity < 0) {
+            throw new VolumeException("Can't create bag with negative volume.");
+        }
+        this.freeVolume = capacity;
+        this.capacity = capacity;
+        bag = new ArrayList<Shape>();
     }
 
     public void addFigure(Shape figure) throws OverflowException {
-        if (figure.getVolume() >= 0.00001) {
-            if (volume >= figure.getVolume()) {
+            if (freeVolume >= figure.getVolume()) {
                 bag.add(figure);
-                volume -= figure.getVolume();
+                freeVolume -= figure.getVolume();
             } else {
-                throw new OverflowException(volume, "Can't put the figure");
+                throw new OverflowException(freeVolume, "Can't put the figure");
             }
-            bag.sort(Shape::compareTo);
-        }
+        Collections.sort(bag);
     }
 
-    public double getVolume() {
-        return volume;
+    public double getFreeVolume() {
+        return freeVolume;
     }
 
     public double getCapacity() {
         return capacity;
-    }
-
-    public void setCapacity(double capacity) {
-        this.capacity = capacity;
-    }
-
-    public void setVolume(double volume) {
-        if (volume < 0) {
-            throw new VolumeException("Can't create bag with negative volume.");
-        }
-        this.volume = volume;
     }
 
     public Shape getElement(int index) {
@@ -58,12 +49,12 @@ public class Bag {
 
     public void deleteShape(Shape shape) {
         bag.remove(shape);
-        volume += shape.getVolume();
+        freeVolume += shape.getVolume();
     }
 
     public void clear() {
         bag.clear();
-        volume = capacity;
+        freeVolume = capacity;
     }
 
     public void printVolumes() {
@@ -72,12 +63,13 @@ public class Bag {
         }
     }
 
+    @Override
     public String toString() {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (Shape shape : bag) {
-            output += "Shape - " + shape.getClass().getName() + ", " + "Volume - " + shape.getVolume() + "\n";
+            output.append("Shape - ").append(shape.getClass().getName()).append(", ").append("Volume - ").append(shape.getVolume()).append("\n");
         }
-        return output;
+        return output.toString();
     }
 }
 
