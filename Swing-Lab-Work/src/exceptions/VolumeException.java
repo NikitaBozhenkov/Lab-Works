@@ -1,7 +1,14 @@
 package exceptions;
 
 public class VolumeException extends RuntimeException {
-    public VolumeException(String message) {
+    private int parameterNumber;
+
+    public int getParameterNumber() {
+        return parameterNumber;
+    }
+
+    public VolumeException(String message, int parameterNumber) {
         super(message);
+        this.parameterNumber = parameterNumber;
     }
 }
