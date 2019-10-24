@@ -1,4 +1,4 @@
-package geometricFigures;
+package planeFigures;
 
 public class Triangle extends PlaneFigure {
     public Triangle(double side, double height) {

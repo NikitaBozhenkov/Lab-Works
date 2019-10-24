@@ -1,4 +1,4 @@
-package geometricFigures;
+package planeFigures;
 
 public class Circle extends PlaneFigure {
     public Circle(double radius) {

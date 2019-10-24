@@ -1,6 +1,6 @@
 package converter;
 
-import geometricFigures.PlaneFigure;
+import planeFigures.PlaneFigure;
 import shapes.*;
 
 import java.util.Random;

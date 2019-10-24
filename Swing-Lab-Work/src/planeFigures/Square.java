@@ -1,4 +1,4 @@
-package geometricFigures;
+package planeFigures;
 
 public class Square extends PlaneFigure {
     public Square(double side1) {

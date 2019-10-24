@@ -1,4 +1,4 @@
-package geometricFigures;
+package planeFigures;
 
 import figure.Figure;
 
