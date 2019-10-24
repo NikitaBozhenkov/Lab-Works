@@ -24,7 +24,6 @@ public class MainFrame extends JFrame {
         setLocation(550, 100);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        bag = new Bag(0);
         addListeners();
         update();
     }
@@ -73,8 +72,9 @@ public class MainFrame extends JFrame {
         deleteBagButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bag.setCapacity(0);
                 bag.clear();
+                bag = null;
+                System.gc();
                 update();
             }
         });
