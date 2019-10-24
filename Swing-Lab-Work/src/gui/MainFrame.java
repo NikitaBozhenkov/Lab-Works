@@ -25,13 +25,14 @@ public class MainFrame extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         addListeners();
-        updateButtonsStatus(true, false, false);
+        updateButtonsStatus(true, false);
     }
 
-    void updateButtonsStatus(boolean par1, boolean par2, boolean par3) {
+    void updateButtonsStatus(boolean par1, boolean par2) {
         createBagButton.setEnabled(par1);
         deleteBagButton.setEnabled(par2);
-        clearButton.setEnabled(par3);
+        contentButton.setEnabled(par2);
+        clearButton.setEnabled(par2);
     }
 
     Bag getBag() {
@@ -80,7 +81,7 @@ public class MainFrame extends JFrame {
                 bag.clear();
                 bag = null;
                 System.gc();
-                updateButtonsStatus(true, false, false);
+                updateButtonsStatus(true, false);
             }
         });
     }
