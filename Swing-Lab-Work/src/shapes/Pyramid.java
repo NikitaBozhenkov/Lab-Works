@@ -5,6 +5,11 @@ import exceptions.VolumeException;
 public class Pyramid extends ConvexFigure {
     private double height;
 
+    @Override
+    public String getBaseFigure() {
+        return "Triangle";
+    }
+
     public double getHeight() {
         return height;
     }

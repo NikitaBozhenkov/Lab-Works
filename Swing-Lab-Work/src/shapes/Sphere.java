@@ -9,4 +9,9 @@ public class Sphere extends RotationFigure {
             throw new VolumeException("Can't create figure with negative volume", 1);
         }
     }
+
+    @Override
+    public String getRotatedFigure() {
+        return "Semicircle";
+    }
 }

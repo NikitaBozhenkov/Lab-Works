@@ -9,6 +9,11 @@ public class Cylinder extends RotationFigure {
         return height;
     }
 
+    @Override
+    public String getRotatedFigure() {
+        return "Rectangle";
+    }
+
     public Cylinder(double radius, double height) {
         super(3.14*radius*radius*height, 3.14*radius*radius, radius, "Cylinder");
         if (radius < 0) {
