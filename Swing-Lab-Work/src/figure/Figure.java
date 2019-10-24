@@ -7,7 +7,7 @@ public abstract class Figure {
         this.className = className;
     }
 
-    protected String getClassName() {
+    public String getClassName() {
         return className;
     }
 

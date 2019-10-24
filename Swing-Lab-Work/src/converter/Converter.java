@@ -15,7 +15,7 @@ public class Converter {
             throw new RuntimeException("Too small figure to create");
         }
         double height = (double)Math.round((Math.random()*(volume/figure.getArea()+0.999) + 0.001) * 100) /100;
-        switch (figure.toString()) {
+        switch (figure.getClassName()) {
             case "Circle" : {
                 double threshhold = 2.0;
                 if (random.nextDouble() < threshhold) {
