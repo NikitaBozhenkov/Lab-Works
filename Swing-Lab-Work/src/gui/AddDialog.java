@@ -94,20 +94,20 @@ public class AddDialog extends JDialog {
                             case ("Square"): {
                                 Converter converter = new Converter();
                                 Square figure = new Square(Double.parseDouble(textField2.getText()));
-                                mainFrame.getBag().addFigure(converter.convert(figure, mainFrame.getBag()));
+                                mainFrame.getBag().addFigure(converter.convert(figure, mainFrame.getBag().getFreeVolume()));
                                 break;
                             }
                             case ("Circle"): {
                                 Converter converter = new Converter();
                                 Circle figure = new Circle(Double.parseDouble(textField2.getText()));
-                                mainFrame.getBag().addFigure(converter.convert(figure, mainFrame.getBag()));
+                                mainFrame.getBag().addFigure(converter.convert(figure, mainFrame.getBag().getFreeVolume()));
                                 break;
                             }
                             case ("Triangle"): {
                                 Converter converter = new Converter();
                                 Triangle figure = new Triangle(Double.parseDouble(textField1.getText()),
                                         Double.parseDouble(textField3.getText()));
-                                mainFrame.getBag().addFigure(converter.convert(figure, mainFrame.getBag()));
+                                mainFrame.getBag().addFigure(converter.convert(figure, mainFrame.getBag().getFreeVolume()));
                                 break;
                             }
                             case ("Sphere"): {
