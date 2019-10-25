@@ -16,8 +16,14 @@ import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
 public class Paint extends Application {
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        BorderPane pane = new BorderPane();
+        Scene scene = new Scene(pane, 1000,700);
+        primaryStage.setTitle("Paint");
+        primaryStage.setScene(scene);
 
         ToggleButton pencilButton = new ToggleButton("Pencil");
         ToggleButton rubberButton = new ToggleButton("Rubber");
@@ -42,7 +48,7 @@ public class Paint extends Application {
         buttons.setStyle("-fx-background-color: #999");
         buttons.setPrefWidth(130);
 
-        Canvas canvas = new Canvas(1000,700);
+        Canvas canvas = new Canvas(2500,1500);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setLineWidth(1);
 
@@ -51,6 +57,7 @@ public class Paint extends Application {
                 gc.beginPath();
                 gc.lineTo(e.getX(),e.getY());
             } else if (rubberButton.isSelected()) {
+                //rubberButton.setCursor(Cursor.);
                 double lineWight = gc.getLineWidth();
                 gc.clearRect(e.getX() - lineWight /2, e.getY() - lineWight/2, lineWight, lineWight);
             }
@@ -79,14 +86,22 @@ public class Paint extends Application {
                     }
                 });
 
+        canvas.setOnMouseEntered(event -> {
+            if (pencilButton.isSelected()) {
+                scene.setCursor(Cursor.HAND);
+            } else if (rubberButton.isSelected()) {
+                scene.setCursor(Cursor.CROSSHAIR);
+            }
+        });
 
-        BorderPane pane = new BorderPane();
+        canvas.setOnMouseExited(event -> {
+            scene.setCursor(Cursor.DEFAULT);
+        });
+
+
         pane.setLeft(buttons);
         pane.setCenter(canvas);
 
-        Scene scene = new Scene(pane, 1000,700);
-        primaryStage.setTitle("Paint");
-        primaryStage.setScene(scene);
         primaryStage.show();
 
     }
