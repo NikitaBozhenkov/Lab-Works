@@ -100,7 +100,7 @@ public class Paint extends Application {
             scene.setCursor(Cursor.DEFAULT);
         });
 
-        colorPicker.setOnHiding(event -> {
+        colorPicker.setOnAction(event -> {
             gc.setStroke(colorPicker.getValue());
         });
 
