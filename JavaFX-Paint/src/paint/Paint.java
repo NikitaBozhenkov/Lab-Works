@@ -42,11 +42,43 @@ public class Paint extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setLineWidth(1);
 
+        canvas.setOnMousePressed(e->{
+            if(pencilButton.isSelected()) {
+                gc.beginPath();
+                gc.lineTo(e.getX(),e.getY());
+            } else if (rubberButton.isSelected()) {
+                double lineWight = gc.getLineWidth();
+                gc.clearRect(e.getX() - lineWight /2, e.getY() - lineWight/2, lineWight, lineWight);
+            }
+        });
+
+        canvas.setOnMouseDragged(e->{
+            if(pencilButton.isSelected()) {
+                gc.lineTo(e.getX(), e.getY());
+                gc.stroke();
+            }
+            else if(rubberButton.isSelected()){
+                double lineWidth = gc.getLineWidth();
+                gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
+            }
+        });
+
+        canvas.setOnMouseReleased(e-> {
+                    if (pencilButton.isSelected()) {
+                        gc.lineTo(e.getX(), e.getY());
+                        gc.stroke();
+                        gc.closePath();
+                    } else if (rubberButton.isSelected()) {
+                        double lineWidth = gc.getLineWidth();
+                        gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
+                    }
+                });
+
 
         BorderPane pane = new BorderPane();
         pane.setLeft(buttons);
         pane.setCenter(canvas);
-        
+
         Scene scene = new Scene(pane, 1000,700);
         primaryStage.setTitle("Paint");
         primaryStage.setScene(scene);
