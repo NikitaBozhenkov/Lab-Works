@@ -104,15 +104,11 @@ public class Paint extends Application {
             gc.setStroke(colorPicker.getValue());
         });
 
-        slider.setOnDragDone(event -> {
+
+        slider.valueProperty().addListener(event -> {
             gc.setLineWidth(slider.getValue());
-            System.out.println(slider.getValue());
         });
 
-        slider.setOnMouseReleased(event -> {
-            gc.setLineWidth(slider.getValue());
-            System.out.println(slider.getValue());
-        });
 
 
         pane.setLeft(buttons);
