@@ -7,13 +7,13 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.awt.*;
+import javafx.scene.paint.Color;
 
 public class Paint extends Application {
     @Override
@@ -32,11 +32,15 @@ public class Paint extends Application {
             tool.setCursor(Cursor.HAND);
         }
 
+        ColorPicker colorPicker = new ColorPicker(Color.BLACK);
+
+
+
         VBox buttons = new VBox(10);
-        buttons.getChildren().addAll(pencilButton, rubberButton);
+        buttons.getChildren().addAll(pencilButton, rubberButton, colorPicker);
         buttons.setPadding(new Insets(5));
         buttons.setStyle("-fx-background-color: #999");
-        buttons.setPrefWidth(100);
+        buttons.setPrefWidth(130);
 
         Canvas canvas = new Canvas(1000,700);
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -54,6 +58,7 @@ public class Paint extends Application {
 
         canvas.setOnMouseDragged(e->{
             if(pencilButton.isSelected()) {
+                gc.setStroke(colorPicker.getValue());
                 gc.lineTo(e.getX(), e.getY());
                 gc.stroke();
             }
