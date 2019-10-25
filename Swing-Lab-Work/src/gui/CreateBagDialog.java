@@ -34,7 +34,7 @@ public class CreateBagDialog extends JDialog {
                     ErrorDialog dialog = new ErrorDialog("Input field is empty");
                     dialog.setVisible(true);
                 }
-                mainFrame.updateButtonsStatus(false, true);
+                mainFrame.updateButtonsStatus(true);
             }
         });
     }
