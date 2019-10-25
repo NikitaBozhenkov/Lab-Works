@@ -1,20 +1,28 @@
 package paint;
 
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Slider;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
+
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Paint extends Application {
 
@@ -44,9 +52,21 @@ public class Paint extends Application {
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
 
+        Button open = new Button("Open");
+        Button save = new Button("Save");
+
+        Button[] operationButtons = {open, save};
+
+        for (Button button : operationButtons) {
+            button.setMinWidth(90);
+            button.setCursor(Cursor.HAND);
+            button.setTextFill(Color.WHITE);
+            button.setStyle("-fx-background-color: #666;");
+            button.setStyle("-fx-background-color: #804f6d;");
+        }
 
         VBox buttons = new VBox(10);
-        buttons.getChildren().addAll(pencilButton, rubberButton, colorPicker, slider);
+        buttons.getChildren().addAll(pencilButton, rubberButton, colorPicker, slider, open, save);
         buttons.setPadding(new Insets(5));
         buttons.setStyle("-fx-background-color: #999");
         buttons.setPrefWidth(130);
@@ -107,6 +127,38 @@ public class Paint extends Application {
 
         slider.valueProperty().addListener(event -> {
             gc.setLineWidth(slider.getValue());
+        });
+
+        open.setOnAction((e)->{
+            FileChooser openFile = new FileChooser();
+            openFile.setTitle("Open File");
+            File file = openFile.showOpenDialog(primaryStage);
+            if (file != null) {
+                try {
+                    InputStream io = new FileInputStream(file);
+                    Image img = new Image(io);
+                    gc.drawImage(img, 0, 0);
+                } catch (IOException ex) {
+                    System.out.println("Error!");
+                }
+            }
+        });
+
+        save.setOnAction((e)->{
+            FileChooser saveFile = new FileChooser();
+            saveFile.setTitle("Save File");
+
+            File file = saveFile.showSaveDialog(primaryStage);
+            if (file != null) {
+                try {
+                    WritableImage writableImage = new WritableImage(2500, 1500);
+                    canvas.snapshot(null, writableImage);
+                    RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                    ImageIO.write(renderedImage, "png", file);
+                } catch (IOException ex) {
+                    System.out.println("Error!");
+                }
+            }
         });
 
 
