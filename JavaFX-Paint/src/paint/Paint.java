@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
@@ -39,11 +40,13 @@ public class Paint extends Application {
         }
 
         ColorPicker colorPicker = new ColorPicker(Color.BLACK);
-
+        Slider slider = new Slider(1, 50, 3);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
 
 
         VBox buttons = new VBox(10);
-        buttons.getChildren().addAll(pencilButton, rubberButton, colorPicker);
+        buttons.getChildren().addAll(pencilButton, rubberButton, colorPicker, slider);
         buttons.setPadding(new Insets(5));
         buttons.setStyle("-fx-background-color: #999");
         buttons.setPrefWidth(130);
@@ -99,6 +102,16 @@ public class Paint extends Application {
 
         colorPicker.setOnHiding(event -> {
             gc.setStroke(colorPicker.getValue());
+        });
+
+        slider.setOnDragDone(event -> {
+            gc.setLineWidth(slider.getValue());
+            System.out.println(slider.getValue());
+        });
+
+        slider.setOnMouseReleased(event -> {
+            gc.setLineWidth(slider.getValue());
+            System.out.println(slider.getValue());
         });
 
 
