@@ -65,7 +65,6 @@ public class Paint extends Application {
 
         canvas.setOnMouseDragged(e->{
             if(pencilButton.isSelected()) {
-                gc.setStroke(colorPicker.getValue());
                 gc.lineTo(e.getX(), e.getY());
                 gc.stroke();
             }
@@ -96,6 +95,10 @@ public class Paint extends Application {
 
         canvas.setOnMouseExited(event -> {
             scene.setCursor(Cursor.DEFAULT);
+        });
+
+        colorPicker.setOnHiding(event -> {
+            gc.setStroke(colorPicker.getValue());
         });
 
 
