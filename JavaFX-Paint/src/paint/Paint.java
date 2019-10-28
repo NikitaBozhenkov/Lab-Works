@@ -1,20 +1,15 @@
 package paint;
 
-import com.sun.javafx.css.converters.CursorConverter;
-import com.sun.javafx.cursor.CursorFrame;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
-import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -40,7 +35,7 @@ public class Paint extends Application {
     private Button save;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         BorderPane pane = new BorderPane();
 
         scene = new Scene(pane, 1000, 700);
@@ -96,7 +91,6 @@ public class Paint extends Application {
         setCursorChanging();
 
         primaryStage.show();
-
     }
 
     private void setPaintActions() {
