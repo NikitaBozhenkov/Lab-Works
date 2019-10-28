@@ -30,38 +30,42 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Paint extends Application {
+    private Scene scene;
+    private Stage primaryStage;
+    private Canvas canvas;
+    private GraphicsContext graphicsContext;
+    private ToggleButton pencilButton;
+    private ToggleButton rubberButton;
+    private Button open;
+    private Button save;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         BorderPane pane = new BorderPane();
-        Scene scene = new Scene(pane, 1000,700);
+
+        scene = new Scene(pane, 1000, 700);
+        canvas = new Canvas(2500, 1500);
+
+        this.primaryStage = primaryStage;
         primaryStage.setTitle("Paint");
         primaryStage.setScene(scene);
 
-        ToggleButton pencilButton = new ToggleButton("Pencil");
-        ToggleButton rubberButton = new ToggleButton("Rubber");
+        graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.setLineWidth(1);
 
+        pencilButton = new ToggleButton("Pencil");
+        rubberButton = new ToggleButton("Rubber");
         ToggleButton[] toolsArray = {pencilButton, rubberButton};
-
         ToggleGroup toolsGroup = new ToggleGroup();
-
         for (ToggleButton tool : toolsArray) {
             tool.setMinWidth(50);
             tool.setToggleGroup(toolsGroup);
             tool.setCursor(Cursor.HAND);
         }
 
-        ColorPicker colorPicker = new ColorPicker(Color.BLACK);
-        Slider slider = new Slider(1, 50, 3);
-        slider.setShowTickLabels(true);
-        slider.setShowTickMarks(true);
-
-        Button open = new Button("Open");
-        Button save = new Button("Save");
-
+        open = new Button("Open");
+        save = new Button("Save");
         Button[] operationButtons = {open, save};
-
         for (Button button : operationButtons) {
             button.setMinWidth(90);
             button.setCursor(Cursor.HAND);
@@ -70,73 +74,85 @@ public class Paint extends Application {
             button.setStyle("-fx-background-color: #804f6d;");
         }
 
+        ColorPicker colorPicker = new ColorPicker(Color.BLACK);
+        colorPicker.setOnAction(event -> graphicsContext.setStroke(colorPicker.getValue()));
+
+        Slider slider = new Slider(1, 50, 3);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.valueProperty().addListener(event -> graphicsContext.setLineWidth(slider.getValue()));
+
         VBox buttons = new VBox(10);
         buttons.getChildren().addAll(pencilButton, rubberButton, colorPicker, slider, open, save);
         buttons.setPadding(new Insets(5));
         buttons.setStyle("-fx-background-color: #999");
         buttons.setPrefWidth(130);
 
-        Canvas canvas = new Canvas(2500,1500);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setLineWidth(1);
+        pane.setLeft(buttons);
+        pane.setCenter(canvas);
 
-        canvas.setOnMousePressed(e->{
-            if(pencilButton.isSelected()) {
-                gc.beginPath();
-                gc.lineTo(e.getX(),e.getY());
+        setPaintActions();
+        setOpenCloseActions();
+        setCursorChanging();
+
+        primaryStage.show();
+
+    }
+
+    private void setPaintActions() {
+        canvas.setOnMouseDragged(e -> {
+            if (pencilButton.isSelected()) {
+                graphicsContext.lineTo(e.getX(), e.getY());
+                graphicsContext.stroke();
+            } else if (rubberButton.isSelected()) {
+                double lineWidth = graphicsContext.getLineWidth();
+                graphicsContext.clearRect(e.getX() - lineWidth / 2,
+                        e.getY() - lineWidth / 2, lineWidth, lineWidth);
+            }
+        });
+
+        canvas.setOnMouseReleased(e -> {
+            if (pencilButton.isSelected()) {
+                graphicsContext.lineTo(e.getX(), e.getY());
+                graphicsContext.stroke();
+                graphicsContext.closePath();
+            } else if (rubberButton.isSelected()) {
+                double lineWidth = graphicsContext.getLineWidth();
+                graphicsContext.clearRect(e.getX() - lineWidth / 2,
+                        e.getY() - lineWidth / 2, lineWidth, lineWidth);
+            }
+        });
+
+        canvas.setOnMousePressed(e -> {
+            if (pencilButton.isSelected()) {
+                graphicsContext.beginPath();
+                graphicsContext.lineTo(e.getX(), e.getY());
             } else if (rubberButton.isSelected()) {
                 //rubberButton.setCursor(Cursor.);
-                double lineWight = gc.getLineWidth();
-                gc.clearRect(e.getX() - lineWight /2, e.getY() - lineWight/2, lineWight, lineWight);
+                double lineWight = graphicsContext.getLineWidth();
+                graphicsContext.clearRect(e.getX() - lineWight / 2,
+                        e.getY() - lineWight / 2, lineWight, lineWight);
             }
         });
+    }
 
-        canvas.setOnMouseDragged(e->{
-            if(pencilButton.isSelected()) {
-                gc.lineTo(e.getX(), e.getY());
-                gc.stroke();
-            }
-            else if(rubberButton.isSelected()){
-                double lineWidth = gc.getLineWidth();
-                gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
-            }
-        });
+    private void setCursorChanging() {
+        canvas.setOnMouseEntered(event -> setImageCursor());
+        canvas.setOnMouseExited(event -> scene.setCursor(Cursor.DEFAULT));
+    }
 
-        canvas.setOnMouseReleased(e-> {
-                    if (pencilButton.isSelected()) {
-                        gc.lineTo(e.getX(), e.getY());
-                        gc.stroke();
-                        gc.closePath();
-                    } else if (rubberButton.isSelected()) {
-                        double lineWidth = gc.getLineWidth();
-                        gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
-                    }
-                });
+    private void setImageCursor() {
+        if (pencilButton.isSelected()) {
+            Image image = new Image("resource\\pencilCursor.png");
+            scene.setCursor(new ImageCursor(image));
+        } else if (rubberButton.isSelected()) {
+            Image image = new Image("resource\\rubberCursor.png");
+            scene.setCursor(new ImageCursor(image));
+        }
+    }
 
-        canvas.setOnMouseEntered(event -> {
-            if (pencilButton.isSelected()) {
-                Image image = new Image("resource\\pencilCursor.png");
-                scene.setCursor(new ImageCursor(image));
-            } else if (rubberButton.isSelected()) {
-                Image image = new Image("resource\\rubberCursor.png");
-                scene.setCursor(new ImageCursor(image));
-            }
-        });
-
-        canvas.setOnMouseExited(event -> {
-            scene.setCursor(Cursor.DEFAULT);
-        });
-
-        colorPicker.setOnAction(event -> {
-            gc.setStroke(colorPicker.getValue());
-        });
-
-
-        slider.valueProperty().addListener(event -> {
-            gc.setLineWidth(slider.getValue());
-        });
-
-        open.setOnAction((e)->{
+    private void setOpenCloseActions() {
+        open.setOnAction((e) -> {
             FileChooser openFile = new FileChooser();
             openFile.setTitle("Open File");
             File file = openFile.showOpenDialog(primaryStage);
@@ -144,14 +160,14 @@ public class Paint extends Application {
                 try {
                     InputStream io = new FileInputStream(file);
                     Image img = new Image(io);
-                    gc.drawImage(img, 0, 0);
+                    graphicsContext.drawImage(img, 0, 0);
                 } catch (IOException ex) {
                     System.out.println("Error!");
                 }
             }
         });
 
-        save.setOnAction((e)->{
+        save.setOnAction((e) -> {
             FileChooser saveFile = new FileChooser();
             saveFile.setTitle("Save File");
 
@@ -167,13 +183,5 @@ public class Paint extends Application {
                 }
             }
         });
-
-
-
-        pane.setLeft(buttons);
-        pane.setCenter(canvas);
-
-        primaryStage.show();
-
     }
 }
