@@ -6,8 +6,8 @@ import ships.Ship;
 import java.util.ArrayList;
 
 public class NarrowTunnel {
-    private ArrayList<Ship> tunnel;
-    private int shipsIn;
+    private volatile ArrayList<Ship> tunnel;
+    private volatile int shipsIn;
 
     public NarrowTunnel() {
         tunnel = new ArrayList<>(5);
@@ -18,13 +18,14 @@ public class NarrowTunnel {
         return shipsIn != 5;
     }
 
-    public void getShipIn(Ship ship) {
+    public synchronized void getShipIn(Ship ship) {
         if (isOpened()) {
             tunnel.add(ship);
+            ++shipsIn;
         }
     }
 
-    public Ship getShipOut(Ingredient ingredient) {
+    public synchronized Ship getShipOut(Ingredient ingredient) {
         for (Ship ship : tunnel) {
             if (ship.getCargoType() == ingredient) {
                 return ship;
