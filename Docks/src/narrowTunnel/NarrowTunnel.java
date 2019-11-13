@@ -26,13 +26,10 @@ public class NarrowTunnel {
     }
 
     public synchronized Ship getShipOut(Ingredient ingredient) {
-        for (Ship ship : tunnel) {
-            if (ship.getCargoType() == ingredient) {
-                return ship;
-            }
+        if (tunnel.get(shipsIn).getCargoType() == ingredient) {
+            return tunnel.get(shipsIn);
+        } else {
+            return null;
         }
-        return null;
     }
-
-
 }
