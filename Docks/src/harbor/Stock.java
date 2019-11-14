@@ -13,6 +13,10 @@ public class Stock {
         isOperated = flag;
     }
 
+    public int getGoodUnits() {
+        return goodUnits;
+    }
+
     public boolean isOperated() {
         return isOperated;
     }

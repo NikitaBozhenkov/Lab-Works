@@ -20,8 +20,13 @@ public class Dock extends Thread {
     public void run() {
         while(true) {
             //trying to get a ship
-            shipCall();
+            try {
+                shipCall();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (ship != null) {
+                System.out.println(ingredient + " stock: successful call");
                 // isOperated check
                 while(stock.isOperated()) {
                     try {
@@ -30,13 +35,14 @@ public class Dock extends Thread {
                         e.printStackTrace();
                     }
                 }
+                System.out.println(ingredient + " stock start unloading the cargo ");
                 stock.setOperatedFlag(true);
 
                 //Unloading the cargo
                 while (ship.getCargoWeight() != 0) {
-                    try {
                         ship.cargoUnload();
                         stock.operateGoods(true);
+                    try {
                         sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -44,6 +50,8 @@ public class Dock extends Thread {
                 }
                 stock.setOperatedFlag(false);
             }
+
+            System.out.println(ingredient + " stock: " + stock.getGoodUnits());
 
             //Sleep after the whole cycle or bad call
             try {
@@ -54,7 +62,7 @@ public class Dock extends Thread {
         }
     }
 
-    private void shipCall() {
+    private void shipCall() throws InterruptedException {
         ship = tunnel.getShipOut(ingredient);
     }
 

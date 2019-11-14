@@ -8,10 +8,12 @@ import java.util.ArrayList;
 public class NarrowTunnel {
     private volatile ArrayList<Ship> tunnel;
     private volatile int shipsIn;
+    private boolean isProcessed;
 
     public NarrowTunnel() {
         tunnel = new ArrayList<>(5);
         shipsIn = 0;
+        isProcessed = false;
     }
 
     private boolean isOpened() {
@@ -25,11 +27,20 @@ public class NarrowTunnel {
         }
     }
 
-    public synchronized Ship getShipOut(Ingredient ingredient) {
-        if (tunnel.get(shipsIn).getCargoType() == ingredient) {
-            return tunnel.get(shipsIn);
-        } else {
-            return null;
+    public synchronized Ship getShipOut(Ingredient ingredient) throws InterruptedException {
+        if (!tunnel.isEmpty()) {
+            if (tunnel.get(shipsIn - 1).getCargoType() == ingredient) {
+                Ship ship = tunnel.get(shipsIn - 1);
+                tunnel.remove(shipsIn - 1);
+                --shipsIn;
+                notifyAll();
+                return ship;
+            } else {
+                notifyAll();
+                wait();
+            }
         }
+        notifyAll();
+        return null;
     }
 }

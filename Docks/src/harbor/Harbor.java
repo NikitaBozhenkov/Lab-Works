@@ -22,4 +22,10 @@ public class Harbor {
     public Dock getSausageDock() {
         return sausageDock;
     }
+
+    public void startWorkingDay() {
+        breadDock.start();
+        mayonnaiseDock.start();;
+        sausageDock.start();
+    }
 }
