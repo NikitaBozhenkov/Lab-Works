@@ -9,11 +9,11 @@ public class Dock extends Thread {
     private final Ingredient ingredient;
     private Ship ship;
     private volatile NarrowTunnel tunnel;
-    private volatile boolean isFree;
 
-    public Dock(Ingredient ingredient, Stock stock) {
+    public Dock(Ingredient ingredient, Stock stock, NarrowTunnel tunnel) {
         this.ingredient = ingredient;
         this.stock = stock;
+        this.tunnel = tunnel;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Dock extends Thread {
             //trying to get a ship
             shipCall();
             if (ship != null) {
-                // Operated check
+                // isOperated check
                 while(stock.isOperated()) {
                     try {
                         wait();
@@ -60,15 +60,5 @@ public class Dock extends Thread {
 
     public Ingredient getIngredient() {
         return ingredient;
-    }
-
-    public boolean isFree() {
-        return isFree;
-    }
-
-    private void updateStatus() {
-        if (ship != null) {
-            isFree = false;
-        }
     }
 }
