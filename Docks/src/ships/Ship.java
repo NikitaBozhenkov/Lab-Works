@@ -18,4 +18,8 @@ public class Ship {
     public int getCargoWeight() {
         return cargoWeight;
     }
+
+    public void cargoUnload() {
+        cargoWeight -= 5;
+    }
 }

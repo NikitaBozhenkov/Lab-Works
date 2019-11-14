@@ -1,7 +1,7 @@
 package harbor;
 
 public class Stock {
-    public int goodUnits;
+    private int goodUnits;
     private volatile boolean isOperated;
 
     public Stock() {
@@ -19,5 +19,13 @@ public class Stock {
 
     public boolean isEmpty() {
         return goodUnits == 0;
+    }
+
+    public void operateGoods(boolean operationFlag) {
+        if (operationFlag) {
+            goodUnits += 5;
+        } else {
+            goodUnits -= 5;
+        }
     }
 }
