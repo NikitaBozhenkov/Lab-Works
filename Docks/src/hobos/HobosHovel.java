@@ -1,8 +1,11 @@
 package hobos;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sandwich.IngredientsHeap;
 
 public class HobosHovel {
+    private final Logger logger = LoggerFactory.getLogger(HobosHovel.class);
     private IngredientsHeap ingredientsHeap;
     private volatile int sandwichCount;
     private volatile int cookersCount;
@@ -17,41 +20,53 @@ public class HobosHovel {
     synchronized void updateStatus() throws InterruptedException {
         ++waitingHobos;
         if(waitingHobos == 8) {
+            logger.info("SPICY MEAT. HE-HE BOOOOOOY");
             waitingHobos = 0;
             cookersCount = 0;
             sandwichCount -= 8;
             notifyAll();
-            System.out.println("Sandwiches count after eating: " + sandwichCount);
         } else {
             wait();
         }
     }
 
-    synchronized void addSandwich(String hoboName) {
+    public synchronized boolean addSandwich() {
         if(ingredientsHeap.isIngredientsEnoughForSandwich()) {
             ingredientsHeap.takeSandwich();
+            logger.info("hovel state: Bread - " + ingredientsHeap.getBreadCount() +
+                    " Mayonnaise - " + ingredientsHeap.getMayonnaiseCount() +
+                    " Sausages - " + ingredientsHeap.getSausageCount());
             ++sandwichCount;
-            System.out.println("Hobo" + hoboName + " cooked a sandwich");
-            System.out.println("Bread: " + ingredientsHeap.getBreadCount() +
-                    " Sausages: " + ingredientsHeap.getSausageCount() +
-                    " Mayonnaise: " + ingredientsHeap.getMayonnaiseCount() +
-                    " Sandwiches count: " + sandwichCount);
+            return true;
         }
+        return false;
     }
 
-    IngredientsHeap getIngredientsHeap() {
+    public int getSandwichCount() {
+        return sandwichCount;
+    }
+
+    public IngredientsHeap getIngredientsHeap() {
         return ingredientsHeap;
     }
 
-    synchronized void addCooker() {
+    public synchronized void addCooker() {
         ++cookersCount;
     }
 
-    synchronized boolean hasEnoughFood() {
+    public synchronized boolean hasEnoughFood() {
         return sandwichCount >= 8;
     }
 
-    synchronized boolean hasEnoughCookers() {
-        return cookersCount == 2;
+    public synchronized boolean canAddCooker() {
+        return cookersCount < 2;
+    }
+
+    public synchronized boolean tryAddCooker() {
+        if (!canAddCooker()) {
+            return false;
+        }
+        addCooker();
+        return true;
     }
 }

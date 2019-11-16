@@ -3,9 +3,13 @@ package hobos;
 import harbor.Dock;
 import harbor.Harbor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Random;
 
 public class Hobo extends Thread {
+    private final Logger logger = LoggerFactory.getLogger(Hobo.class);
     public enum Profession {
         sundowner,
         thief,
@@ -26,17 +30,12 @@ public class Hobo extends Thread {
     }
 
     private void professionChoose() {
-        if (hovel.hasEnoughCookers()) {
-            this.profession = Profession.thief;
-        } else {
+        if (hovel.tryAddCooker()) {
             this.profession = Profession.cooker;
-            hovel.addCooker();
+        } else {
+            this.profession = Profession.thief;
         }
-        System.out.println("Hobo " + hoboName + " became a " + profession);
-    }
-
-    public String getHoboName() {
-        return hoboName;
+        logger.info(hoboName + " became a " + profession);
     }
 
     private void dockChoose() {
@@ -74,12 +73,15 @@ public class Hobo extends Thread {
                                 e.printStackTrace();
                             }
                             hovel.getIngredientsHeap().addIngredient(dock.getIngredient());
-                            System.out.println("Hobo " + hoboName + " bring " + dock.getIngredient());
+                            logger.info(hoboName + " bring " + dock.getIngredient());
                             break;
                         }
                     }
                     case cooker: {
-                        hovel.addSandwich(hoboName);
+                        if(hovel.addSandwich()) {
+                            logger.info(hoboName + " cooked a sandwich. Hobos now have "
+                                    + hovel.getSandwichCount() + " sandwiches");
+                        }
                         break;
                     }
                     default: {
