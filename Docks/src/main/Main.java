@@ -18,11 +18,6 @@ public class Main {
                 new Dock(Ingredient.MAYONNAISE, new Stock(), tunnel),
                 new Dock(Ingredient.SAUSAGE, new Stock(), tunnel));
         HobosHovel hobosHovel = new HobosHovel(new IngredientsHeap());
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Hobo[] hobos = new Hobo[]{new Hobo(harbor, "#1", hobosHovel),
                 new Hobo(harbor, "#2", hobosHovel), new Hobo(harbor, "#3", hobosHovel),
                 new Hobo(harbor, "#4", hobosHovel), new Hobo(harbor, "#5", hobosHovel),

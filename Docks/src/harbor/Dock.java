@@ -1,10 +1,13 @@
 package harbor;
 
 import narrowTunnel.NarrowTunnel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sandwich.Ingredient;
 import ships.Ship;
 
 public class Dock extends Thread {
+    private final Logger logger = LoggerFactory.getLogger(Dock.class);
     private final Stock stock;
     private final Ingredient ingredient;
     private Ship ship;
@@ -30,16 +33,14 @@ public class Dock extends Thread {
                 e.printStackTrace();
             }
             if (ship != null) {
-                System.out.println(ingredient + " stock: successful call");
+                logger.info(ingredient + " ship arrived to the dock");
                 try {
-                    stock.operateUploading(ship);
+                    stock.operateUnloading(ship);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-
-            System.out.println(ingredient + " stock: " + stock.getGoodUnits());
-
+            logger.info(ingredient + " stock finished the unloading. It now has "+ stock.getGoodUnits() + " units");
             //Sleep after the whole cycle or bad call
             try {
                 sleep(3000);

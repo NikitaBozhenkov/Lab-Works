@@ -1,12 +1,15 @@
 package shipsGenerator;
 
 import narrowTunnel.NarrowTunnel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sandwich.Ingredient;
 import ships.Ship;
 
 import java.util.Random;
 
 public class ShipsGenerator extends Thread {
+    private final Logger logger = LoggerFactory.getLogger(ShipsGenerator.class);
     private NarrowTunnel tunnel;
 
     public ShipsGenerator(NarrowTunnel tunnel) {
@@ -15,6 +18,7 @@ public class ShipsGenerator extends Thread {
 
     @Override
     public void run() {
+
         Random random = new Random();
         Ship ship;
         int weight;
@@ -41,9 +45,13 @@ public class ShipsGenerator extends Thread {
             }
 
             ship = new Ship(weight,ingredient);
-            tunnel.getShipIn(ship);
             ++shipsCount;
-            System.out.println("Generated ship number " + shipsCount);
+
+            if(tunnel.getShipIn(ship)) {
+                logger.info(" ship №" +  shipsCount + " (" + weight + " units of " + ingredient + ") arrived to tunnel");
+            } else {
+                logger.warn(shipsCount + " ship (" + weight + " units of " + ingredient + ") sank");
+            };
 
             try {
                 sleep(3000);

@@ -18,11 +18,13 @@ public class NarrowTunnel {
         return shipsIn != 5;
     }
 
-    public synchronized void getShipIn(Ship ship) {
+    public synchronized boolean getShipIn(Ship ship) {
         if (isOpened()) {
             tunnel.add(ship);
             ++shipsIn;
+            return true;
         }
+        return false;
     }
 
     public synchronized Ship getShipOut(Ingredient ingredient) throws InterruptedException {

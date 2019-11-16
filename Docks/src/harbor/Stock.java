@@ -22,7 +22,7 @@ public class Stock {
         goodUnits -= 1;
     }
 
-    public synchronized void operateUploading(Ship ship) throws InterruptedException {
+    public synchronized void operateUnloading(Ship ship) throws InterruptedException {
         while (ship.getCargoWeight() != 0) {
             goodUnits += 5;
             ship.cargoUnload();
