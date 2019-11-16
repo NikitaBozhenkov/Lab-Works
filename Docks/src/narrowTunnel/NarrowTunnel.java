@@ -8,12 +8,10 @@ import java.util.ArrayList;
 public class NarrowTunnel {
     private volatile ArrayList<Ship> tunnel;
     private volatile int shipsIn;
-    private boolean isProcessed;
 
     public NarrowTunnel() {
         tunnel = new ArrayList<>(5);
         shipsIn = 0;
-        isProcessed = false;
     }
 
     private boolean isOpened() {
