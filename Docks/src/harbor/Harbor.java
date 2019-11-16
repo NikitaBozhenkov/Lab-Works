@@ -11,15 +11,15 @@ public class Harbor {
         this.sausageDock = sausageDock;
     }
 
-    public Dock getBreadDock() {
+    public synchronized Dock getBreadDock() {
         return breadDock;
     }
 
-    public Dock getMayonnaiseDock() {
+    public synchronized Dock getMayonnaiseDock() {
         return mayonnaiseDock;
     }
 
-    public Dock getSausageDock() {
+    public synchronized Dock getSausageDock() {
         return sausageDock;
     }
 

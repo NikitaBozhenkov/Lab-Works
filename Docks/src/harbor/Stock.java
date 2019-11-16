@@ -1,35 +1,32 @@
 package harbor;
 
+import ships.Ship;
+
 public class Stock {
-    private int goodUnits;
-    private volatile boolean isOperated;
+    private volatile int goodUnits;
 
     public Stock() {
         goodUnits = 0;
-        isOperated = false;
     }
 
-    public void setOperatedFlag(boolean flag) {
-        isOperated = flag;
-    }
-
-    public int getGoodUnits() {
+    synchronized int getGoodUnits() {
         return goodUnits;
     }
 
-    public boolean isOperated() {
-        return isOperated;
-    }
-
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return goodUnits == 0;
     }
 
-    public void operateGoods(boolean operationFlag) {
-        if (operationFlag) {
+    public synchronized void operateStealing() throws InterruptedException {
+        Thread.sleep(3000);
+        goodUnits -= 1;
+    }
+
+    public synchronized void operateUploading(Ship ship) throws InterruptedException {
+        while (ship.getCargoWeight() != 0) {
             goodUnits += 5;
-        } else {
-            goodUnits -= 5;
+            ship.cargoUnload();
+            Thread.sleep(1000);
         }
     }
 }

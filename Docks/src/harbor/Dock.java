@@ -5,15 +5,19 @@ import sandwich.Ingredient;
 import ships.Ship;
 
 public class Dock extends Thread {
-    private volatile Stock stock;
+    private final Stock stock;
     private final Ingredient ingredient;
     private Ship ship;
-    private volatile NarrowTunnel tunnel;
+    private NarrowTunnel tunnel;
 
     public Dock(Ingredient ingredient, Stock stock, NarrowTunnel tunnel) {
         this.ingredient = ingredient;
         this.stock = stock;
         this.tunnel = tunnel;
+    }
+
+    public synchronized Stock getStock() {
+        return stock;
     }
 
     @Override
@@ -27,28 +31,11 @@ public class Dock extends Thread {
             }
             if (ship != null) {
                 System.out.println(ingredient + " stock: successful call");
-                // isOperated check
-                while(stock.isOperated()) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    stock.operateUploading(ship);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                System.out.println(ingredient + " stock start unloading the cargo ");
-                stock.setOperatedFlag(true);
-
-                //Unloading the cargo
-                while (ship.getCargoWeight() != 0) {
-                        ship.cargoUnload();
-                        stock.operateGoods(true);
-                    try {
-                        sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                stock.setOperatedFlag(false);
             }
 
             System.out.println(ingredient + " stock: " + stock.getGoodUnits());
