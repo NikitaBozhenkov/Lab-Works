@@ -18,25 +18,25 @@ public class ShipsGenerator extends Thread {
 
     @Override
     public void run() {
-
         Random random = new Random();
         Ship ship;
         int weight;
         Ingredient ingredient;
         int shipsCount = 0;
 
-        while(true) {
+        while (true) {
+            // Creating a ship
             double weightRandomValue = random.nextDouble();
             double ingredientRandomValue = random.nextDouble();
 
-            if(weightRandomValue < 0.33) {
+            if (weightRandomValue < 0.33) {
                 weight = 10;
             } else if (weightRandomValue < 0.66) {
                 weight = 20;
             } else {
                 weight = 30;
             }
-            if(ingredientRandomValue < 0.33) {
+            if (ingredientRandomValue < 0.33) {
                 ingredient = Ingredient.SAUSAGE;
             } else if (ingredientRandomValue < 0.66) {
                 ingredient = Ingredient.BREAD;
@@ -44,14 +44,14 @@ public class ShipsGenerator extends Thread {
                 ingredient = Ingredient.MAYONNAISE;
             }
 
-            ship = new Ship(weight,ingredient);
+            ship = new Ship(weight, ingredient);
             ++shipsCount;
 
-            if(tunnel.getShipIn(ship)) {
-                logger.info(" ship №" +  shipsCount + " (" + weight + " units of " + ingredient + ") arrived to tunnel");
+            if (tunnel.getShipIn(ship)) {
+                logger.info(" ship №" + shipsCount + " (" + weight + " units of " + ingredient + ") arrived to tunnel");
             } else {
-                logger.warn(shipsCount + " ship (" + weight + " units of " + ingredient + ") sank");
-            };
+                logger.warn(" ship №" + shipsCount + " (" + weight + " units of " + ingredient + ") sank");
+            }
 
             try {
                 sleep(3000);

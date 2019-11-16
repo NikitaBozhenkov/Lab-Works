@@ -23,6 +23,10 @@ public class IngredientsHeap {
         return sausageCount;
     }
 
+    public synchronized boolean canMakeSandwich() {
+        return mayonnaiseCount >= 1 && breadCount >= 1 && sausageCount >= 1;
+    }
+
     public synchronized void addIngredient(Ingredient ingredient) {
         switch (ingredient) {
             case BREAD: {
@@ -43,14 +47,10 @@ public class IngredientsHeap {
         }
     }
 
-    public synchronized boolean isIngredientsEnoughForSandwich() {
-        return mayonnaiseCount >= 1 && breadCount >= 1 && sausageCount >= 1;
-    }
-
+    //Guaranteed that field will not become negative
     public synchronized void takeSandwich() {
-            --mayonnaiseCount;
-            --breadCount;
-            --sausageCount;
+        --mayonnaiseCount;
+        --breadCount;
+        --sausageCount;
     }
-
 }

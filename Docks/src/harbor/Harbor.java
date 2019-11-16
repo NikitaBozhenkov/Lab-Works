@@ -25,7 +25,7 @@ public class Harbor {
 
     public void startWorkingDay() {
         breadDock.start();
-        mayonnaiseDock.start();;
+        mayonnaiseDock.start();
         sausageDock.start();
     }
 }

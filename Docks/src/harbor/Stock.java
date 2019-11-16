@@ -3,28 +3,28 @@ package harbor;
 import ships.Ship;
 
 public class Stock {
-    private volatile int goodUnits;
+    private volatile int goodsUnits;
 
     public Stock() {
-        goodUnits = 0;
+        goodsUnits = 0;
     }
 
-    synchronized int getGoodUnits() {
-        return goodUnits;
+    public synchronized int getGoodsUnits() {
+        return goodsUnits;
     }
 
     public synchronized boolean isEmpty() {
-        return goodUnits == 0;
+        return goodsUnits == 0;
     }
 
     public synchronized void operateStealing() throws InterruptedException {
         Thread.sleep(3000);
-        goodUnits -= 1;
+        --goodsUnits;
     }
 
     public synchronized void operateUnloading(Ship ship) throws InterruptedException {
         while (ship.getCargoWeight() != 0) {
-            goodUnits += 5;
+            goodsUnits += 5;
             ship.cargoUnload();
             Thread.sleep(1000);
         }

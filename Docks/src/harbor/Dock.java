@@ -23,15 +23,24 @@ public class Dock extends Thread {
         return stock;
     }
 
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    private void shipCall() throws InterruptedException {
+        ship = tunnel.getShipOut(ingredient);
+    }
+
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             //trying to get a ship
             try {
                 shipCall();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             if (ship != null) {
                 logger.info(ingredient + " ship arrived to the dock");
                 try {
@@ -39,22 +48,15 @@ public class Dock extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
-            logger.info(ingredient + " stock finished the unloading. It now has "+ stock.getGoodUnits() + " units");
-            //Sleep after the whole cycle or bad call
-            try {
-                sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.info(ingredient + " stock finished the unloading. It now has " + stock.getGoodsUnits() + " units");
+
+                //Workers are tired
+                try {
+                    sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
-
-    private void shipCall() throws InterruptedException {
-        ship = tunnel.getShipOut(ingredient);
-    }
-
-    public Ingredient getIngredient() {
-        return ingredient;
     }
 }
